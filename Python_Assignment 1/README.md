@@ -1,16 +1,10 @@
-#Setup Steps
--- Create a Virtual Environment
-CMD --> python -m venv venv
+# Python Learning Scripts
  
--- Activate the Virtual Environment(Linux)
-CMD --> source venv/bin/activate
+A collection of self-executing Python scripts demonstrating core programming concepts and best practices. Each script is following Pythonic conventions and PEP 8 style guidelines.
  
--- Install Required Packages
-CMD --> pip install -r requirements.txt
+## 📁 Project Structure
  
---use autopep8 to automatically format code according to PEP 8
-CMD --> autopep8 --in-place --aggressive --aggressive your_file.py
- 
+```
 project-folder/
 ├── venv/                                     # Virtual environment
 ├── requirements.txt                          # Required packages
@@ -23,10 +17,33 @@ project-folder/
 ├── Classes-Exception_handling.py             # Class with attributes/methods
 ├── iterators.py, decorator.py, generator.py  # Decorators, generators, iterators
 └── README.md                                 # Setup and usage guide
+```
  
+## 🚀 Getting Started
  
-Run the Scripts---
+### Prerequisites
+- Python 3.6 or higher
+- No external dependencies required
  
+### Setup
+1. Clone or download the project files
+2. Create a virtual environment (recommended):
+   ```bash
+   python -m venv venv
+   ```
+3. Activate the virtual environment:
+   - **Windows:** `venv\Scripts\activate`
+   - **macOS/Linux:** `source venv/bin/activate`
+ 
+### Running the Scripts
+Each script is self-executing. Simply run:
+```bash
+python script_name.py
+```
+## 📖 Usage Examples
+ 
+```bash
+# Run scripts like
 python3 operator.py
 python3 control_flow.py
 python3 functions.py
@@ -36,3 +53,5 @@ python3 Classes-Exception_handling.py
 python3 iterator.py
 python3 decorator.py
 python3 generator.py
+ 
+```

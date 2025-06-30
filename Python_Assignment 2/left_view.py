@@ -1,60 +1,21 @@
 from collections import deque
+from tree_utils import Node, build_tree
+"""
+============================
+ Overall File Complexities
+============================
 
-# Node class for the Binary Tree
-class Node:
-    """
-    A class to represent a node in a binary tree.
+Time Complexity:
+---------------
+- build_tree: O(n) — each node inserted based on input
+- print_left_view: O(n) — each node visited once
+- Total: O(n)
 
-    Attributes:
-        data (int): The value of the node.
-        left (Node): Pointer to the left child node.
-        right (Node): Pointer to the right child node.
-    """
-    def __init__(self, data):
-        """
-        Initializes a node with given data, and sets left and right children to None.
-
-        Args:
-            data (int): Value to be stored in the node.
-        """
-        self.data = data
-        self.left = None
-        self.right = None
-
-
-def build_tree():
-    """
-    Builds a binary tree based on user input using level-order (BFS) approach.
-
-    Returns:
-        Node: The root of the constructed binary tree.
-
-    Time Complexity:
-        O(n) — each node is visited exactly once.
-
-    Space Complexity:
-        O(n) — for the queue used in level-order traversal.
-    """
-    val = input("Enter root node value: ")
-    if val == "None":
-        return None
-    root = Node(int(val))
-    queue = deque([root])  # queue to build tree level by level
-
-    while queue:
-        current = queue.popleft()
-        
-        left_val = input(f"Enter left child of {current.data} (None if no child): ")
-        if left_val != "None":
-            current.left = Node(int(left_val))
-            queue.append(current.left)
-
-        right_val = input(f"Enter right child of {current.data} (None if no child): ")
-        if right_val != "None":
-            current.right = Node(int(right_val))
-            queue.append(current.right)
-
-    return root
+Space Complexity:
+----------------
+- Queue in both build_tree and print_left_view: O(n)
+- Total: O(n)
+"""
 
 
 def print_left_view(root):
@@ -93,19 +54,3 @@ root = build_tree()
 print("Left View of Tree:")
 print_left_view(root)
 
-"""
-============================
- Overall File Complexities
-============================
-
-Time Complexity:
----------------
-- build_tree: O(n) — each node inserted based on input
-- print_left_view: O(n) — each node visited once
-- Total: O(n)
-
-Space Complexity:
-----------------
-- Queue in both build_tree and print_left_view: O(n)
-- Total: O(n)
-"""

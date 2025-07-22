@@ -3,8 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
 
-app = Flask(__name__)  #object creation for app running
-
+app = Flask(__name__)
 app.secret_key = os.urandom(24)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -29,8 +28,6 @@ with app.app_context():
 def index():
     if 'user_id' not in session:
         return redirect(url_for('login'))
-    
-    # Get current user information
     current_user = User.query.get(session['user_id'])
     todos = Todo.query.filter_by(user_id=session['user_id']).all()
     return render_template('todo.html', todos=todos, current_user=current_user)
@@ -54,12 +51,10 @@ def register():
         email = request.form['email']
         password = request.form['password']
         
-        # Check if username already exists
         if User.query.filter_by(username=username).first():
             flash('Username already exists')
             return redirect(url_for('register'))
         
-        # Check if email already exists
         if User.query.filter_by(email=email).first():
             flash('Email already exists')
             return redirect(url_for('register'))
@@ -75,14 +70,12 @@ def add_todo():
     if 'user_id' not in session:
         return redirect(url_for('login'))
     
-    task = request.form['task'].strip()  # Remove leading/trailing whitespace
+    task = request.form['task'].strip()
     
-    # Check if task is empty
     if not task:
         flash('Task cannot be empty!', 'error')
         return redirect(url_for('index'))
     
-    # Check for duplicate tasks (case-insensitive)
     existing_task = Todo.query.filter_by(user_id=session['user_id']).filter(
         db.func.lower(Todo.task) == task.lower()
     ).first()
@@ -91,7 +84,6 @@ def add_todo():
         flash('Already exists!', 'error')
         return redirect(url_for('index'))
     
-    # Create new task if no duplicate found
     new_todo = Todo(task=task, user_id=session['user_id'])
     db.session.add(new_todo)
     db.session.commit()
@@ -106,14 +98,12 @@ def edit_todo(todo_id):
     if todo.user_id != session['user_id']:
         return redirect(url_for('index'))
     
-    new_task = request.form['task'].strip()  # Remove leading/trailing whitespace
+    new_task = request.form['task'].strip()
     
-    # Check if task is empty
     if not new_task:
         flash('Task cannot be empty!', 'error')
         return redirect(url_for('index'))
     
-    # Check for duplicate tasks (excluding current task)
     existing_task = Todo.query.filter_by(user_id=session['user_id']).filter(
         db.func.lower(Todo.task) == new_task.lower(),
         Todo.id != todo_id
@@ -123,7 +113,6 @@ def edit_todo(todo_id):
         flash('Already exists!', 'error')
         return redirect(url_for('index'))
     
-    # Update task if no duplicate found
     todo.task = new_task
     db.session.commit()
     return redirect(url_for('index'))
@@ -153,7 +142,6 @@ def clear_all_completed():
     if 'user_id' not in session:
         return redirect(url_for('login'))
     
-    # Delete all completed todos for the current user
     completed_todos = Todo.query.filter_by(user_id=session['user_id'], completed=True).all()
     for todo in completed_todos:
         db.session.delete(todo)
@@ -167,7 +155,6 @@ def remove_duplicates():
     if 'user_id' not in session:
         return redirect(url_for('login'))
     
-    # Find and remove duplicate tasks for the current user
     user_todos = Todo.query.filter_by(user_id=session['user_id']).order_by(Todo.id).all()
     seen_tasks = {}
     duplicates_removed = 0
@@ -176,7 +163,6 @@ def remove_duplicates():
         task_lower = todo.task.lower().strip()
         
         if task_lower in seen_tasks:
-            # This is a duplicate, remove it
             db.session.delete(todo)
             duplicates_removed += 1
         else:

@@ -393,7 +393,7 @@ input[type="text"]::placeholder, input[type="password"]::placeholder, input[type
 
 
 .todo-container {
-    max-width: min(900px, 95vw);
+    max-width: min(1100px, 95vw);
     min-height: min(800px, 85vh);
     margin: 2rem auto;
     padding: clamp(1.5rem, 3vw, 2.5rem);
@@ -763,6 +763,8 @@ input[type="text"]::placeholder, input[type="password"]::placeholder, input[type
     background: linear-gradient(135deg, #8b5cf6, #7c3aed);
     color: white;
     box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+    position: relative;
+    top: 13px;
 }
 
 .undo-btn:hover {

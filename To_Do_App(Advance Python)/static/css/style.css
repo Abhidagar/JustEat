@@ -125,7 +125,7 @@ body::before {
     min-height: calc(100vh - clamp(80px, 15vw, 100px));
 }
 
-/* Auth page styles */
+/* Auth page stywetrwetles */
 .auth-container {
     display: flex;
     justify-content: center;
@@ -390,6 +390,7 @@ input[type="text"]::placeholder, input[type="password"]::placeholder, input[type
     box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
     border: none;
 }
+
 
 .todo-container {
     max-width: min(900px, 95vw);

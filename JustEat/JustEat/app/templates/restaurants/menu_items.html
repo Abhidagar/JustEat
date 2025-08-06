@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block title %}JustEat | Menu{% endblock %}
+
+{% block scripts %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css')}}">
+{% endblock %}
+
+{% block navbar %}
+{% include "partials/_restaurant_navbar.html" %}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid position-fixed bg-body-tertiary p-0 d-flex h-100">
+    {% include "partials/_restaurant_sidebar.html" %}
+
+    <div class="scroll-content overflow-auto w-100 my-4 p-2 px-lg-4 pb-5">
+        <div class="d-flex justify-content-between align-items-center">
+            <h2 class="font-mona-sans mb-0">Menu</h2>
+            <a href="{{ url_for('restaurant.add_menu_item', slug=restaurant.slug) }}" class="btn btn-success btn-sm">
+                <i class="bi bi-plus-lg"></i>
+                Add New Item
+            </a>
+        </div>
+
+        <hr>
+        {% if not restaurant.menu_items %}
+        <div class="my-5 py-3 max-w-lg text-center">
+            <img src="{{ url_for('static', filename='images/icecream.svg') }}" class="w-25 img-fluid mb-4"
+                alt="icecream">
+            <h3>No Items.</h3>
+        </div>
+        {% else %}
+        <div class="p-2 p-lg-3 row row-cols-1 row-cols-md-4 row-cols-lg-3 gap-1 mt-4 ">
+            {% from "macros/menu_item_card.html" import render_menu_item_for_owner %}
+            {% for item in restaurant.menu_items %}
+            {{ render_menu_item_for_owner(item, restaurant.slug, item.id in popular_item_ids) }}
+            {% endfor %}
+        </div>
+        {% endif %}
+        <div class="d-block d-lg-none h-56"></div>
+    </div>
+</div>
+{% endblock %}

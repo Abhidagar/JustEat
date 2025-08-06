@@ -1,0 +1,175 @@
+<nav class="navbar position-sticky z-2 top-0 bg-white border-bottom shadow-sm">
+    <div class="container-fluid" style="max-width: 1200px;">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="{{ url_for('customer.home') }}">
+            <img src="{{ url_for('static', filename='images/icon1.png') }}" alt="Logo" width="32" height="32">
+            <strong class="fs-4 fw-bold" style="color: var(--clean-gray-900);">
+                JustEat
+            </strong>
+        </a>
+
+        <div class="d-flex align-items-center ms-auto">
+            <ul class="navbar-nav d-flex flex-row align-items-center gap-4">
+                <li class="nav-item d-none d-md-block">
+                    <a class="nav-link" href="{{ url_for('auth.dashboard') }}" style="color: var(--clean-gray-600);">Dashboard</a>
+                </li>
+                <li class="nav-item d-none d-md-block">
+                    <a class="nav-link" href="{{ url_for('auth.profile') }}" style="color: var(--clean-gray-600);">Profile</a>
+                </li>
+                <li class="nav-item d-none d-md-block">
+                    <a class="nav-link" href="{{ url_for('customer.view_orders') }}" style="color: var(--clean-gray-600);">Orders</a>
+                </li>
+                <li class="nav-item d-none d-md-block">
+                    <a class="nav-link" href="{{ url_for('customer.view_favorites') }}" style="color: var(--clean-gray-600);">
+                        <i class="bi bi-heart me-1"></i>Favorites
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-primary d-flex align-items-center gap-2 px-3 py-2" 
+                            type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#cart" aria-controls="cart">
+                        <i class="bi bi-cart"></i>
+                        <span>₹{{ cart_summary.total }}</span>
+                    </button>
+                </li>
+                <li class="nav-item d-none d-md-block">
+                    <form action="{{ url_for('auth.logout') }}" method="post">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <button class="btn btn-link nav-link" style="color: var(--clean-gray-500);">
+                            Logout
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+
+<!-- Mobile Navbar -->
+<!-- <nav class="d-md-none fixed-bottom bg-white border-top shadow">
+    <ul class="nav justify-content-around py-3 text-center align-items-center">
+        <li class="nav-item">
+            <a class="nav-link d-flex flex-column align-items-center gap-1 px-2 py-1 rounded-2
+                     {% if page == 'dashboard' %}bg-primary text-white{% else %}text-muted{% endif %}" 
+               href="{{ url_for('auth.dashboard') }}">
+                <i class="bi bi-house" style="font-size: 1.1rem;"></i>
+                <span class="text-xs" style="font-weight: 500;">Dashboard</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link d-flex flex-column align-items-center gap-1 px-2 py-1 rounded-2
+                     {% if page == 'search' %}bg-primary text-white{% else %}text-muted{% endif %}" 
+               href="{{ url_for('customer.search') }}">
+                <i class="bi bi-search" style="font-size: 1.1rem;"></i>
+                <span class="text-xs" style="font-weight: 500;">Search</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link d-flex flex-column align-items-center gap-1 px-2 py-1 rounded-2
+                     {% if page == 'orders' %}bg-primary text-white{% else %}text-muted{% endif %}" 
+               href="{{ url_for('customer.view_orders') }}">
+                <i class="bi bi-card-list" style="font-size: 1.1rem;"></i>
+                <span class="text-xs" style="font-weight: 500;">Orders</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <button class="btn btn-primary d-flex flex-column align-items-center gap-1 px-2 py-1" 
+                    type="button" data-bs-toggle="offcanvas" data-bs-target="#cart"
+                    aria-controls="cart"
+                    style="border-radius: 8px; font-weight: 500;">
+                <i class="bi bi-cart" style="font-size: 1.1rem;"></i>
+                <span class="text-xs">₹{{ cart_summary.total }}</span>
+            </button>
+        </li>
+    </ul>
+</nav> -->
+
+<!-- View Cart Offcanvas  -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="cart" aria-labelledby="cartLabel">
+    <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title" id="cartLabel">My Cart</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        {% if cart.items %}
+        <div class="card mb-3" style="border: 1px solid var(--clean-gray-200); border-radius: 12px;">
+            <div class="row g-0">
+                <div class="col-4">
+                    <img src="{{ cart.restaurant.image }}" alt="{{ cart.restaurant.name }}"
+                        class="img-fluid rounded-start w-100 h-100 object-fit-cover">
+                </div>
+                <div class="col-8">
+                    <div class="card-body py-3">
+                        <h6 class="card-title fw-bold mb-1">{{ cart.restaurant.name|title }}</h6>
+                        <p class="text-muted mb-0 text-sm">
+                            <i class="bi bi-geo-alt"></i>
+                            {{ cart.restaurant.location }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% for cart_item in cart.items %}
+        {% set current_menu_item = cart_item.menu_item %}
+        <div class="card border-0 border-bottom mb-2" style="background: white;">
+            <div class="card-body py-3">
+                <div class="row g-1 align-items-center">
+                    <div class="col-6">
+                        <h6 class="card-title fw-semibold mb-0">{{ current_menu_item.name|title }}</h6>
+                    </div>
+                    <div class="col-3">
+                        <div class="d-flex bg-light rounded-3 me-auto align-items-center">
+                            <form class="w-50"
+                                action="{{ url_for('customer.remove_from_cart', slug=cart.restaurant.slug, item_id=current_menu_item.id) }}"
+                                method="post">
+                                <input type="hidden" name="csrf_token" id="csrf_token" value="{{ csrf_token() }}">
+                                <button class="btn btn-success btn-sm w-100" style="border-radius: 6px 0 0 6px; font-size: 0.8rem;">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                            </form>
+                            <span class="w-100 fw-bold text-center px-2 text-sm">{{ cart_item.quantity }}</span>
+                            <form class="w-50"
+                                action="{{ url_for('customer.add_to_cart', slug=cart.restaurant.slug, item_id=current_menu_item.id) }}"
+                                method="post">
+                                <input type="hidden" name="csrf_token" id="csrf_token" value="{{ csrf_token() }}">
+                                <button class="btn btn-success btn-sm w-100" style="border-radius: 0 6px 6px 0; font-size: 0.8rem;">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="text-end">
+                            <p class="fw-semibold mb-0 text-sm">
+                                ₹ {{ '%.2f' | format(current_menu_item.price * cart_item.quantity) }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="my-3 p-5 text-center">
+            <img src="{{ url_for('static', filename='images/cart.svg') }}" alt="cart" class="img-fluid">
+            <p class="fs-5 mt-5 fw-semibold">Cart Empty</p>
+        </div>
+        {% endif %}
+    </div>
+    {% if cart.items %}
+    <div class="offcanvas-footer p-3">
+        <form action="{{ url_for('customer.place_order') }}" method="post">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button class="btn btn-success w-100">Place Order - ₹ {{ '%.2f' | format(cart_summary.total) }} </button>
+        </form>
+    </div>
+    {% endif %}
+</div>
+
+<script>
+    //    document.addEventListener("DOMContentLoaded", function () {
+    //        var offcanvasElement = document.getElementById("cart");
+    //        var bsOffcanvas = new bootstrap.Offcanvas(offcanvasElement);
+    //        bsOffcanvas.show();
+    //    });
+</script>

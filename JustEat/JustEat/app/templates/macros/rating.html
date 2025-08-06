@@ -1,0 +1,13 @@
+{% macro render_rating_stars(rating) %}
+<div class="d-flex text-warning gap-1">
+    {% for i in range(5) %}
+    {% if rating >= i + 1 %}
+    <i class="bi bi-star-fill"></i>
+    {% elif rating > i %}
+    <i class="bi bi-star-half"></i>
+    {% else %}
+    <i class="bi bi-star"></i>
+    {% endif %}
+    {% endfor %}
+</div>
+{% endmacro %}

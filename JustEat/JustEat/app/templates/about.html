@@ -1,0 +1,105 @@
+{% extends "layout.html" %}
+
+{% block title %}
+JustEat | Welcome
+{% endblock %}
+
+{% block scripts %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/backgrounds.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="min-vh-100 d-flex align-items-center bg-gradient-success">
+    <div class="container">
+        <div class="max-w-lg mx-auto text-center">
+            <!-- Logo and Brand -->
+            <div class="mb-5">
+                <img src="{{ url_for('static', filename='images/icon1.png') }}" alt="JustEat Logo" width="100" height="100" class="mb-4">
+                <h1 class="display-4 font-winky-sans fw-bold text-dark mb-3">JustEat</h1>
+                <p class="lead text-muted mb-4">
+                   <h3>Delicious Food, Delivered Fast</h3> 
+                   <h6>Order from your favorite local restaurants and get fresh, hot food delivered to your door.</h6> 
+                </p>
+            </div>
+
+            <!-- Feature Highlights -->
+            <div class="row g-4 mb-5">
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <div class="bg-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="bi bi-clock-fill text-success" style="font-size: 1.8rem;"></i>
+                        </div>
+                        <h6 class="fw-semibold">Fast Delivery</h6>
+                        <p class="text-muted small">Quick and reliable food delivery</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <div class="bg-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="bi bi-star-fill text-warning" style="font-size: 1.8rem;"></i>
+                        </div>
+                        <h6 class="fw-semibold">Quality Food</h6>
+                        <p class="text-muted small">Top-rated restaurants and cuisines</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <div class="bg-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="bi bi-check-circle-fill text-primary" style="font-size: 1.8rem;"></i>
+                        </div>
+                        <h6 class="fw-semibold">Easy Ordering </h6>
+                        <p class="text-muted small">Simple interface makes ordering easy </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Type Selection -->
+            <div class="card shadow-lg border-0" style="max-width: 800px; margin: 0 auto;">
+                <div class="card-body p-3">
+                    <h4 class="card-title font-mona-sans fw-bold mb-2">Get Started</h4>
+                    <p class="text-muted mb-3" style="font-size: 0.9rem;">Choose your account type to continue</p>
+                    
+                    <div class="row g-2 justify-content-center">
+                        <!-- Customer Button -->
+                        <div class="col-md-5 col-sm-6 col-8">
+                            <a href="{{ url_for('auth.login') }}?user_type=customer" class="btn btn-primary w-100 py-0.05 text-decoration-none rounded-3 shadow-sm">
+                                <div class="d-flex flex-column align-items-center">
+                                    <i class="bi bi-person-fill mb-2" style="font-size: 1.2rem;"></i>
+                                    <span class="fw-semibold" style="font-size: 0.9rem;">Customer</span>
+                                    <small class="text-light opacity-90" style="font-size: 0.75rem;">Order food</small>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <!-- Owner Button -->
+                        <div class="col-md-5 col-sm-6 col-8">
+                            <a href="{{ url_for('auth.login') }}?user_type=owner" class="btn btn-success w-100 py-0.05 text-decoration-none rounded-3 shadow-sm">
+                                <div class="d-flex flex-column align-items-center">
+                                    <i class="bi bi-shop mb-2" style="font-size: 1.2rem;"></i>
+                                    <span class="fw-semibold" style="font-size: 0.9rem;">Owner</span>
+                                    <small class="text-light opacity-90" style="font-size: 0.75rem;">Manage restaurant</small>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-3">
+                        <p class="text-muted small mb-0" style="font-size: 0.8rem;">
+                            New to JustEat? Don't worry, you can create an account after selecting your user type.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="mt-5 text-center">
+                <p class="text-muted small">
+                    &copy; 2025 JustEat. All rights reserved. | 
+                    <a href="#" class="text-decoration-none">Privacy Policy</a> | 
+                    <a href="#" class="text-decoration-none">Terms of Service</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

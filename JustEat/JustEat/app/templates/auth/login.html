@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+
+{% block title %}
+JustEat | Login
+{% endblock %}
+
+{% block scripts %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/backgrounds.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="min-vh-100 d-flex bg-gradient-success">
+    <!-- Left Side - Branding -->
+    <div class="w-100 d-lg-flex d-none align-items-center justify-content-center p-5">
+        <div class="text-center">
+            <div class="bg-white rounded-circle d-inline-flex align-items-center justify-content-center mb-4 shadow-lg" style="width: 120px; height: 120px;">
+                <img src="{{ url_for('static', filename='images/icon1.png') }}" alt="JustEat Logo" width="80" height="80">
+            </div>
+            <h1 class="font-winky-sans fw-bold text-white mb-3" style="font-size: 3rem;">JustEat</h1>
+            <p class="text-white opacity-90 fs-5">Order food hassle free</p>
+            <div class="row g-3 mt-4 text-white">
+                <div class="col-12">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <div class="bg-white bg-opacity-25 rounded-circle d-inline-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                            <i class="bi bi-clock-fill text-white"></i>
+                        </div>
+                        <span class="small">Fast & Reliable Delivery</span>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <div class="bg-white bg-opacity-25 rounded-circle d-inline-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                            <i class="bi bi-star-fill text-white"></i>
+                        </div>
+                        <span class="small">Quality Food Experience</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Right Side - Login Form -->
+    <div class="w-100 d-flex flex-column justify-content-center align-items-center p-4">
+        <div class="bg-white rounded-4 shadow-lg p-5" style="width: 100%; max-width: 400px;">
+            <!-- Mobile Logo -->
+            <div class="d-lg-none text-center mb-4">
+                <img src="{{ url_for('static', filename='images/icon1.png') }}" alt="JustEat Logo" width="60" height="60" class="mb-3">
+                <h3 class="font-winky-sans fw-bold text-success">JustEat</h3>
+            </div>
+            
+            <!-- Welcome Header -->
+            <div class="text-center mb-4">
+                <h2 class="font-mona-sans fw-bold text-dark mb-2">Welcome Back!</h2>
+                <p class="text-muted small">Sign in to your account to continue</p>
+            </div>
+            
+            <!-- Login Form -->
+            <form method="POST" novalidate>
+                {{ form.hidden_tag() }}
+                {% from "macros/form_fields.html" import render_input_field, render_submit_field, render_password_field %}
+                
+                <!-- Email Field -->
+                <div class="mb-3">
+                    {{ render_input_field(form.email, placeholder="Enter your email address", class="form-control-lg") }}
+                </div>
+                
+                <!-- Password Field -->
+                <div class="mb-4">
+                    {{ render_password_field(form.password, placeholder="Enter your password", class="form-control-lg") }}
+                </div>
+                
+                <!-- Submit Button -->
+                <div class="d-grid mb-3">
+                    {{ render_submit_field(form.submit, class="btn btn-success btn-lg py-3 fw-semibold rounded-3 shadow-sm") }}
+                </div>
+                
+                <!-- Footer Links -->
+                <div class="text-center">
+                    <p class="text-muted small mb-0">
+                        <i class="bi bi-info-circle me-1"></i>
+                        Need help? Contact support
+                    </p>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Back to Home Link -->
+        <div class="text-center mt-4">
+            <a href="{{ url_for('auth.about') }}" class="text-decoration-none" style="color: #2d3436;">
+                <i class="bi bi-arrow-left me-1"></i>
+                Back to Home
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

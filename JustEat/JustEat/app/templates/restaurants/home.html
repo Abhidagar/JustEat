@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block title -%}JustEat | {{ restaurant.name }} {%- endblock %}
+
+{% block scripts %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css')}}">
+{% endblock %}
+
+{% block navbar %}
+{% include "partials/_restaurant_navbar.html" %}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid bg-body-secondary p-0 d-flex h-100">
+    {% include "partials/_restaurant_sidebar.html" %}
+
+    <div class="overflow-auto w-100 my-4 p-2 px-lg-5 pb-lg-0 pb-5">
+        <h2 class="font-mona-sans mb-0">Statistics</h2>
+        <hr>
+        <div class="my-5 py-5 text-center fs-4 text-muted">Coming Soon...</div>
+    </div>
+
+
+    <hr>
+</div>
+</div>
+
+{% endblock %}

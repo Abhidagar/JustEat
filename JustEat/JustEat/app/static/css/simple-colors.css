@@ -1,0 +1,78 @@
+/* Simple Color System */
+:root {
+  /* Primary Colors - Simple Blue */
+  --clean-primary: #3b82f6;
+  --clean-primary-light: #60a5fa;
+  --clean-primary-dark: #2563eb;
+  
+  /* Gray Scale - Simple and Clean */
+  --clean-gray-50: #f9fafb;
+  --clean-gray-100: #f3f4f6;
+  --clean-gray-200: #e5e7eb;
+  --clean-gray-300: #d1d5db;
+  --clean-gray-400: #9ca3af;
+  --clean-gray-500: #6b7280;
+  --clean-gray-600: #4b5563;
+  --clean-gray-700: #374151;
+  --clean-gray-800: #1f2937;
+  --clean-gray-900: #111827;
+  
+  /* Accent Colors */
+  --clean-accent: #10b981;
+  --clean-success: #10b981;
+  --clean-warning: #f59e0b;
+  --clean-error: #ef4444;
+  
+  /* Shadows - Simple and Subtle */
+  --clean-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --clean-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  
+  /* Typography */
+  --clean-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+/* Simple Base Styles */
+body {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  color: var(--clean-gray-700);
+  font-family: var(--clean-font-family);
+}
+
+/* Clean Card Base Style */
+.clean-card {
+  background: white;
+  border: 1px solid var(--clean-gray-200);
+  border-radius: 12px;
+  box-shadow: var(--clean-shadow);
+  transition: all 0.2s ease;
+}
+
+.clean-card:hover {
+  box-shadow: var(--clean-shadow-lg);
+  transform: translateY(-2px);
+}
+
+/* Simple Button Styles */
+.btn {
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--clean-primary);
+  border-color: var(--clean-primary);
+}
+
+.btn-primary:hover {
+  background: var(--clean-primary-dark);
+  border-color: var(--clean-primary-dark);
+  transform: translateY(-1px);
+}
+
+.btn-success {
+  background: var(--clean-success);
+  border-color: var(--clean-success);
+}

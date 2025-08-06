@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+{% block title %}JustEat | Add Restaurant{% endblock %}
+
+{% block scripts %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/backgrounds.css') }}">
+{% endblock %}
+
+{% block navbar %}
+{% include "partials/_restaurant_navbar.html" %}
+{% endblock %}
+
+{% block content %}
+<div class="min-vh-100 bg-body-tertiary py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <!-- Header Section -->
+                <div class="text-center mb-4">
+                    <div class="bg-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3 shadow-sm" style="width: 70px; height: 70px;">
+                        <i class="bi bi-shop text-success" style="font-size: 2rem;"></i>
+                    </div>
+                    <h3 class="font-winky-sans fw-bold text-dark mb-2" style="font-size: 1.5rem;">Add New Restaurant</h3>
+                    <p class="text-muted small">Fill in the details to register your restaurant</p>
+                </div>
+
+                <!-- Form Card -->
+                <div class="card shadow-lg border-0 rounded-4">
+                    <div class="card-body p-5">
+                        <form method="POST" novalidate>
+                            {{ form.hidden_tag() }}
+                            {% from "macros/form_fields.html" import render_input_field, render_submit_field %}
+
+                            <!-- Restaurant Name -->
+                            <div class="mb-4">
+                                <label class="form-label fw-semibold text-dark mb-2" style="font-size: 0.9rem;">
+                                    <i class="bi bi-shop me-2 text-success" style="font-size: 0.9rem;"></i>Restaurant Name
+                                </label>
+                                {{ render_input_field(form.name, placeholder="Enter Restaurant Name", class="form-control") }}
+                            </div>
+
+                            <!-- Location -->
+                            <div class="mb-4">
+                                <label class="form-label fw-semibold text-dark mb-2" style="font-size: 0.9rem;">
+                                    <i class="bi bi-geo-alt me-2 text-success" style="font-size: 0.9rem;"></i>Location
+                                </label>
+                                {{ render_input_field(form.location, placeholder="Enter Restaurant Location", class="form-control") }}
+                            </div>
+
+                            <!-- Operating Hours -->
+                            <div class="mb-5">
+                                <label class="form-label fw-semibold text-dark mb-3" style="font-size: 0.9rem;">
+                                    <i class="bi bi-clock me-2 text-success" style="font-size: 0.9rem;"></i>Operating Hours
+                                </label>
+                                <div class="row g-4">
+                                    <div class="col-md-6">
+                                        <div class="bg-light rounded-3 p-3">
+                                            <label class="form-label text-muted mb-2" style="font-size: 0.8rem;">Opening Time</label>
+                                            {{ render_input_field(form.opening_time, class="form-control border-0 bg-white") }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="bg-light rounded-3 p-3">
+                                            <label class="form-label text-muted mb-2" style="font-size: 0.8rem;">Closing Time</label>
+                                            {{ render_input_field(form.closing_time, class="form-control border-0 bg-white") }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="d-grid gap-2 mt-4">
+                                {{ render_submit_field(form.submit, class="btn btn-success py-3 fw-semibold rounded-3 shadow-sm") }}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Footer Note -->
+                <div class="text-center mt-4">
+                    <p class="text-muted" style="font-size: 0.8rem;">
+                        <i class="bi bi-info-circle me-1"></i>
+                        Once registered, you can start adding menu items and managing orders
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

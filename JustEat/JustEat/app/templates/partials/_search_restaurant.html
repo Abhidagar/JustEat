@@ -1,0 +1,13 @@
+<form action="{{ url_for('customer.search') }}" method="GET" class="flex-grow-1">
+    <div class="position-relative">
+        <input type="text" name="q" value="{{ request.args.get('q', '') }}" 
+               class="form-control form-control-lg pe-5" 
+               placeholder="Search restaurants, cuisines, or dishes..."
+               style="border-radius: 12px; border: 2px solid var(--clean-gray-300); background: white; color: var(--clean-gray-900); font-weight: 500; padding-left: 1.5rem; padding-right: 3.5rem;">
+        <button class="btn position-absolute top-50 end-0 translate-middle-y me-2" 
+                type="submit"
+                style="background: var(--clean-primary); color: white; border: none; border-radius: 8px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+            <i class="bi bi-search"></i>
+        </button>
+    </div>
+</form>

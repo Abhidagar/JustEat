@@ -1,0 +1,21 @@
+{% macro render_review_card(review) %}
+<div class="card mb-3">
+    <div class="card-body">
+        {% from "macros/rating.html" import render_rating_stars %}
+        <div class="card-title">
+            <h5>{{ review.user.name }}</h5>
+            {{ render_rating_stars(review.rating) }}
+        </div>
+        <div class="card-text">
+            {{ review.comment }}
+        </div>
+    </div>
+    <div class="card-footer bg-body">
+        <div class="card-text text-end text-sm text-muted">
+            <small>
+                {{ review.created_at.strftime('%B %d, %H:%M %p') }}
+            </small>
+        </div>
+    </div>
+</div>
+{% endmacro %}

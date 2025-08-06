@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{ restaurant.name|title }} | Menu
+{% endblock%}
+
+{% block scripts %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/backgrounds.css') }}">
+<script src="{{ url_for('static', filename='js/scroll-wrapper.js') }}"></script>
+{% endblock%}
+
+{% block navbar %}
+{% include "partials/_customer_navbar.html" %}
+{% endblock%}
+
+{% block content %}
+<div class="container max-w-md">
+
+    {% include "partials/_restaurant_info.html" %}
+
+    <!-- Restaurant tabs -->
+    <ul class="nav nav-underline nav-fill">
+        <li class="nav-item">
+            <a class="nav-link active" href="{{ url_for('customer.restaurant_info', slug=restaurant.slug) }}">
+                Menu
+            </a>
+        </li>
+        <li class="nav-item ">
+            <a class="nav-link" href="{{ url_for('customer.restaurant_reviews', slug=restaurant.slug) }}">Reviews</a>
+        </li>
+    </ul>
+
+    {% from "macros/menu_item_card.html" import render_menu_item_for_user %}
+    <div class="gap-2 pb-3">
+        {% if not restaurant.menu_items %}
+        <p class="fs-3 text-muted fw-bold text-center my-5">No Items.</p>
+        {% else %}
+        {% for item in restaurant.menu_items %}
+        {{
+        render_menu_item_for_user(
+        item,
+        restaurant.slug,
+        cart_summary.item_qty.get(item.id),
+        restaurant.is_active,
+        item.id in popular_item_ids,
+        item.id in favorite_menu_item_ids
+        )
+        }}
+        {% endfor %}
+        {% endif %}
+
+    </div>
+</div>
+<div class="d-block d-lg-none h-56"></div>
+{% endblock %}

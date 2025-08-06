@@ -1,0 +1,119 @@
+{% extends "layout.html" %}
+{% block title %}JustEat | Dashboard {% endblock %}
+
+{% block scripts %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/backgrounds.css') }}">
+{% endblock %}
+
+{% block navbar %}
+{% include "partials/_restaurant_navbar.html" %}
+{% endblock %}
+
+{% block content %}
+<div class="min-vh-100 bg-body-tertiary py-4">
+    <div class="container">
+        <!-- Header Section -->
+        <div class="row align-items-center mb-4">
+            <div class="col">
+                <div class="d-flex align-items-center">
+                    <div class="bg-white rounded-circle d-inline-flex align-items-center justify-content-center me-3 shadow-sm" style="width: 50px; height: 50px;">
+                        <i class="bi bi-shop text-success" style="font-size: 1.3rem;"></i>
+                    </div>
+                    <div>
+                        <h2 class="fw-bold font-winky-sans mb-0 text-dark">My Restaurants</h2>
+                        <p class="text-muted mb-0 small">Manage your restaurant portfolio</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-auto">
+                <a href="{{ url_for('restaurant.create') }}" class="btn btn-success shadow-sm rounded-3 px-3 py-2">
+                    <i class="bi bi-plus-lg me-1" style="font-size: 0.9rem;"></i>
+                    <span style="font-size: 0.9rem;">Add New</span>
+                </a>
+            </div>
+        </div>
+
+        {% if restaurants %}
+        <div class="row g-4">
+            {% for r in restaurants %}
+            <div class="col-12 col-md-6 col-xl-4">
+                <a href="{{ url_for('restaurant.view_orders', slug=r.slug) }}" class="text-decoration-none">
+                    <div class="card h-100 shadow-lg border-0 rounded-4 overflow-hidden">
+                        <!-- Card Header with Status -->
+                        <div class="card-header bg-white border-0 p-3">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div class="flex-grow-1">
+                                    <h5 class="card-title text-capitalize fw-bold text-dark mb-1">{{ r.name|title }}</h5>
+                                    <p class="text-muted mb-0 small">Click to manage orders</p>
+                                </div>
+                                <span class="badge {{ 'bg-success' if r.is_active else 'bg-warning' }} rounded-pill px-3 py-2">
+                                    <i class="bi bi-{{ 'check-circle' if r.is_active else 'pause-circle' }} me-1"></i>
+                                    {{ 'Active' if r.is_active else 'Inactive' }}
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Card Body with Details -->
+                        <div class="card-body p-3 pt-0">
+                            <div class="row g-2">
+                                <div class="col-12">
+                                    <div class="d-flex align-items-center text-muted mb-2">
+                                        <div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px;">
+                                            <i class="bi bi-geo-alt text-success"></i>
+                                        </div>
+                                        <span class="small">{{ r.location|title }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="d-flex align-items-center text-muted">
+                                        <div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px;">
+                                            <i class="bi bi-clock text-success"></i>
+                                        </div>
+                                        <span class="small">
+                                            {{ r.opening_time.strftime('%I:%M %p') }} - {{ r.closing_time.strftime('%I:%M %p') }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card Footer with Action Hint -->
+                        <div class="card-footer bg-light border-0 p-3">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <small class="text-muted">
+                                    <i class="bi bi-arrow-right-circle me-1"></i>
+                                    View Orders & Menu
+                                </small>
+                                <i class="bi bi-chevron-right text-success"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <!-- Empty State -->
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card shadow-lg border-0 rounded-4 text-center">
+                    <div class="card-body p-5">
+                        <div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center mb-4" style="width: 80px; height: 80px;">
+                            <i class="bi bi-shop text-muted" style="font-size: 2.5rem;"></i>
+                        </div>
+                        <h4 class="font-winky-sans fw-bold text-dark mb-3">No Restaurants Yet</h4>
+                        <p class="text-muted mb-4">Start your food business journey by adding your first restaurant.</p>
+                        <a href="{{ url_for('restaurant.create') }}" class="btn btn-success btn-lg px-4 py-3 rounded-3 shadow-sm">
+                            <i class="bi bi-plus-lg me-2"></i>
+                            Add Your First Restaurant
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="d-block d-lg-none bottom-navigation"></div>
+{% endblock %}

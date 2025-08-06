@@ -1,0 +1,65 @@
+{# templates/macros/form_fields.html #}
+
+
+{# Macro to render all input fields (with labels) #}
+{% macro render_input_field(field, placeholder="", class="") %}
+<div class="mb-3 w-100">
+    <!-- Field Label -->
+    <label for="{{ field.id }}" class="form-label">
+        {{ field.label.text }}
+    </label>
+
+    <!-- Field Input -->
+    {{ 
+        field(
+            class="form-control " + class + (' is-invalid' if field.errors else ''), 
+            placeholder=placeholder
+        ) 
+    }}
+
+    <!-- Errors, if any -->
+    {% if field.errors %}
+      <div class="invalid-feedback d-block">
+        {{ field.errors[0] }}
+      </div>
+    {% endif %}
+</div>
+{% endmacro %}
+
+
+{# Macro to render password fields: includes toggle password button #}
+{% macro render_password_field(field, placeholder="", class="") %}
+<div class="mb-3 w-100">
+    <!-- Field Label -->
+    <label for="{{ field.id }}" class="form-label">
+        {{ field.label.text }}
+    </label>
+
+    <div class="input-group">
+        <!-- Field Input -->
+        {{ 
+            field(
+                class="form-control " + class + (' is-invalid' if field.errors else ''), 
+                placeholder=placeholder
+            ) 
+        }}
+
+        <button type="button" tabindex="-1" class="btn btn-secondary" data-role="password-toggle" 
+            data-target="{{ field.id }}" aria-label="Toggles password visibility">
+            <i class="bi bi-eye"></i>
+        </button>
+    </div>
+          
+    <!-- Errors, if any -->
+    {% if field.errors %}
+      <div class="invalid-feedback d-block">
+        {{ field.errors[0] }}
+      </div>
+    {% endif %}
+</div>
+{% endmacro %}
+
+{# Macro to render all submit field (no labels) #}
+{% macro render_submit_field(field, class="btn btn-success") %}
+    {{ field(class=class) }}
+{% endmacro %}

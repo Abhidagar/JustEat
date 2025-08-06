@@ -1,0 +1,136 @@
+{% extends "layout.html" %}
+
+{% block title %}
+JustEat | My Favorites
+{% endblock%}
+
+{% block scripts %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/backgrounds.css') }}">
+<script src="{{ url_for('static', filename='js/scroll-wrapper.js') }}"></script>
+{% endblock%}
+
+{% block navbar %}
+{% include "partials/_customer_navbar.html" %}
+{% endblock%}
+
+{% block content %}
+<div class="container max-w-lg mx-auto m-4">
+    <!-- Heading -->
+    <div class="d-flex align-items-center mb-4">
+        <h2 class="fw-bold font-inter mb-0">My Favorites</h2>
+        <i class="bi bi-heart-fill text-danger ms-2" style="font-size: 1.5rem;"></i>
+    </div>
+
+    <!-- Tabs -->
+    <ul class="nav nav-underline nav-fill mb-4">
+        <li class="nav-item">
+            <a class="nav-link active" id="restaurants-tab" data-bs-toggle="tab" href="#restaurants" role="tab">
+                <i class="bi bi-shop me-1"></i>
+                Restaurants ({{ restaurant_favorites|length }})
+            </a>
+        </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content">
+        <!-- Restaurants Tab -->
+        <div class="tab-pane fade show active" id="restaurants" role="tabpanel">
+            {% if restaurant_favorites %}
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-2">
+                {% for favorite in restaurant_favorites %}
+                {% set restaurant = favorite.restaurant %}
+                <div class="col">
+                    <div class="card h-100 border-0 shadow-sm" style="border-radius: 12px; overflow: hidden;">
+                        <div class="position-relative">
+                            <img src="{{ restaurant.image }}" alt="{{ restaurant.name }}" 
+                                 class="card-img-top w-100 object-fit-cover" 
+                                 style="height: 180px;">
+                            
+                            <!-- Favorite button (filled heart since it's already favorited) -->
+                            <form action="{{ url_for('customer.toggle_favorite', restaurant_id=restaurant.id) }}" 
+                                  method="POST" class="position-absolute top-0 end-0 m-3">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                <button type="submit" class="btn btn-sm rounded-circle p-2" 
+                                        style="background: rgba(255, 255, 255, 0.9); border: none; width: 36px; height: 36px;">
+                                    <i class="bi bi-heart-fill text-danger"></i>
+                                </button>
+                            </form>
+                            
+                            {% if restaurant.rating_count %}
+                            <div class="position-absolute bottom-0 start-0 m-3">
+                                <span class="badge bg-white text-dark d-flex align-items-center gap-1 px-2 py-1" 
+                                      style="border-radius: 20px; font-weight: 500; font-size: 0.75rem;">
+                                    <i class="bi bi-star-fill text-warning" style="font-size: 0.7rem;"></i>
+                                    {{ restaurant.avg_rating|round(1) }}
+                                </span>
+                            </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="card-body">
+                            <h6 class="card-title fw-bold mb-2" style="color: var(--clean-gray-900);">
+                                {{ restaurant.name|title }}
+                            </h6>
+                            
+                            <p class="text-muted mb-2 text-sm">
+                                <i class="bi bi-geo-alt me-1"></i>
+                                {{ restaurant.location|title }}
+                            </p>
+                            
+                            <p class="text-muted mb-3 text-sm">
+                                <i class="bi bi-clock me-1"></i>
+                                {{ restaurant.opening_time.strftime('%I:%M %p') }} - {{ restaurant.closing_time.strftime('%I:%M %p') }}
+                            </p>
+
+                            <!-- Restaurant Cuisines -->
+                            <div class="d-flex flex-wrap gap-1 mb-3">
+                                {% for cuisine in restaurant.cuisines[:2] %}
+                                <span class="badge" 
+                                      style="background-color: var(--clean-gray-100); color: var(--clean-gray-600); font-weight: 400; border-radius: 6px; font-size: 0.7rem;">
+                                    {{ cuisine.name }}
+                                </span>
+                                {% endfor %}
+                                {% if restaurant.cuisines|length > 2 %}
+                                <span class="badge" 
+                                      style="background-color: var(--clean-gray-100); color: var(--clean-gray-600); font-weight: 400; border-radius: 6px; font-size: 0.7rem;">
+                                    +{{ restaurant.cuisines|length - 2 }}
+                                </span>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">
+                                    <i class="bi bi-heart-fill text-danger me-1"></i>
+                                    Favorited {{ favorite.favorited_at.strftime('%b %d') }}
+                                </small>
+                                <a href="{{ url_for('customer.restaurant_info', slug=restaurant.slug) }}" 
+                                   class="btn btn-primary btn-sm">
+                                    View Menu
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <!-- Empty State for Restaurants -->
+            <div class="text-center py-5">
+                <div class="mb-4">
+                    <i class="bi bi-shop" style="font-size: 4rem; color: var(--clean-gray-300);"></i>
+                </div>
+                <h4 class="text-muted mb-3">No Favorite Restaurants Yet</h4>
+                <p class="text-muted mb-4">Start exploring restaurants and click the heart button to add them to your favorites!</p>
+                <a href="{{ url_for('customer.home') }}" class="btn btn-primary">
+                    <i class="bi bi-search me-2"></i>
+                    Discover Restaurants
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="mt-4 pb-5"></div>
+{% endblock%}

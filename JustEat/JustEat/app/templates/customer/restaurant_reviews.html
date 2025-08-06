@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{ restaurant.name|title }} | Reviews
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/scroll-wrapper.js') }}"></script>
+{% endblock%}
+
+{% block navbar %}
+{% include "partials/_customer_navbar.html" %}
+{% endblock%}
+
+{% block content %}
+<div class="container max-w-md">
+    {% include "partials/_restaurant_info.html" %}
+
+    <!-- Restaurant tabs -->
+    <ul class="nav nav-underline nav-fill">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('customer.restaurant_info', slug=restaurant.slug) }}">
+                Menu
+            </a>
+        </li>
+        <li class="nav-item ">
+            <a class="nav-link active"
+                href="{{ url_for('customer.restaurant_reviews', slug=restaurant.slug) }}">Reviews</a>
+        </li>
+    </ul>
+
+    <div class="gap-2 py-3">
+        {% if not reviews %}
+        <p class="fs-3 text-muted fw-bold text-center my-5">No Reviews Yet.</p>
+        {% else %}
+
+        {% from "macros/review_card.html" import render_review_card %}
+
+        <div class="row row-cols-1 row-cols-md-2">
+            {% for review in reviews %}
+            <div class="col">
+                {{ render_review_card(review) }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock%}

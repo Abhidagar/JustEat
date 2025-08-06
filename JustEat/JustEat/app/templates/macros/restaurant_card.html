@@ -1,0 +1,62 @@
+{% macro render_restaurant_card(restaurant, show_favorite=True, is_favorited=False) %}
+<div class="clean-card p-0" style="min-width: 280px; max-width: 280px;">
+    <a href="{{ url_for('customer.restaurant_info', slug=restaurant.slug) }}" class="text-decoration-none text-body">
+        <div class="position-relative">
+            <img src="{{ restaurant.image }}" alt="{{ restaurant.name }}" 
+                 class="w-100 object-fit-cover" 
+                 style="height: 160px; border-radius: 12px 12px 0 0;">
+            
+            {% if restaurant.rating_count %}
+            <div class="position-absolute top-0 end-0 m-3">
+                <span class="badge bg-white text-dark d-flex align-items-center gap-1 px-2 py-1" 
+                      style="border-radius: 20px; font-weight: 500; font-size: 0.75rem;">
+                    <i class="bi bi-star-fill text-warning" style="font-size: 0.7rem;"></i>
+                    {{ restaurant.avg_rating|round(1) }}
+                </span>
+            </div>
+            {% endif %}
+            
+            <!-- Favorite Button -->
+            {% if show_favorite %}
+            <div class="position-absolute top-0 start-0 m-3">
+                <form action="{{ url_for('customer.toggle_favorite', restaurant_id=restaurant.id) }}" 
+                      method="POST" onclick="event.stopPropagation();" style="display: inline;">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <button type="submit" class="btn btn-sm rounded-circle p-2" 
+                            style="background: rgba(255, 255, 255, 0.9); border: none; width: 36px; height: 36px;">
+                        <i class="bi bi-heart{{ '-fill text-danger' if is_favorited else ' text-muted' }}"></i>
+                    </button>
+                </form>
+            </div>
+            {% endif %}
+        </div>
+        
+        <div class="p-3">
+            <h6 class="mb-2" style="font-weight: 600; color: var(--clean-gray-900);">
+                {{ restaurant.name|title }}
+            </h6>
+            
+            <p class="mb-2 text-sm" style="color: var(--clean-gray-500);">
+                <i class="bi bi-geo-alt me-1"></i>
+                {{ restaurant.location|title }}
+            </p>
+
+            <!-- Restaurant Cuisines -->
+            <div class="d-flex flex-wrap gap-1">
+                {% for cuisine in restaurant.cuisines[:2] %}
+                <span class="badge" 
+                      style="background-color: var(--clean-gray-100); color: var(--clean-gray-600); font-weight: 400; border-radius: 6px; font-size: 0.7rem;">
+                    {{ cuisine.name }}
+                </span>
+                {% endfor %}
+                {% if restaurant.cuisines|length > 2 %}
+                <span class="badge" 
+                      style="background-color: var(--clean-gray-100); color: var(--clean-gray-600); font-weight: 400; border-radius: 6px; font-size: 0.7rem;">
+                    +{{ restaurant.cuisines|length - 2 }}
+                </span>
+                {% endif %}
+            </div>
+        </div>
+    </a>
+</div>
+{% endmacro %}

@@ -1,0 +1,8 @@
+.sidebar {
+  min-height: calc(100vh - 56px);
+  max-width: 300px;
+}
+
+.list-group-item .active {
+  background-color: var(--bs-primary-bg-subtle) !important;
+}

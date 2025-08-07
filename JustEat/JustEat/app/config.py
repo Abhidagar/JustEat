@@ -13,7 +13,7 @@ class DevelopmentConfig(Config):
     DEBUG = True  # Enable debug mode for development
     # Use environment variable or fallback to local SQLite DB
     SQLALCHEMY_DATABASE_URI = (
-        os.environ.get("DATABASE_URI") 
+        os.environ.get("DATABASE_URI") or "sqlite:///just_eat.dev.db"
     )
 
 

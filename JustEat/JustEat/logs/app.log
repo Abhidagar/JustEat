@@ -1783,3 +1783,5 @@ jinja2.exceptions.UndefinedError: 'dict object' has no attribute 'total_quantity
 [INFO] 2025-08-08 10:04:50,758 - Updated details for restaurant 1
 [INFO] 2025-08-08 10:04:50,758 - Updated details for restaurant 1
 [INFO] 2025-08-08 10:04:50,758 - Updated details for restaurant 1
+[INFO] 2025-08-08 19:12:10,077 - Logging is set up with rotation.
+[INFO] 2025-08-08 19:12:20,635 - Logging is set up with rotation.

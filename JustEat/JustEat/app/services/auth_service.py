@@ -19,7 +19,7 @@ def load_user(user_id: str) -> Optional[User]:
     """
     return db.session.get(User, int(user_id))
 
-
+# Only handles authentication operations (Single Responsibility Principle)
 def login_user(email: str, password: str) -> Optional[User]:
     """Authenticate a user by email and password.
 

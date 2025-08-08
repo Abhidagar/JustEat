@@ -10,7 +10,7 @@ def get_user_cart(user: User) -> Optional[Cart]:
     """Retrieve a user's active cart."""
     return Cart.query.filter_by(user_id=user.id).first()
 
-
+# Only handles shopping cart operations (Single Responsibility Principle)
 def get_cart_summary(user: User) -> dict:
     """Generate summary of cart contents and total."""
     cart = get_user_cart(user)

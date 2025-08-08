@@ -6,7 +6,8 @@ from flask_login import current_user
 from app.models import UserRole
 from app.utils import get_dashboard_for_role
 
-
+# Only handles role-based authorization(single Responsibility Principle)
+# Open for extension but closed for modifications - can create new role decorators(Open/Closed Principle)
 def role_required(role: UserRole):
     """Decorator factory to restrict access by user role.
 

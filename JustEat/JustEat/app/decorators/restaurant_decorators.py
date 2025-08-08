@@ -7,7 +7,7 @@ from app.services.menu_item_service import get_item_by_id
 from app.services.restaurant_service import get_restaurant_by_slug
 from app.utils import get_dashboard_for_role
 
-
+# Only checks restaurant existence(Single Responsibility Principle)
 def restaurant_exists(f):
     """Verify restaurant exists before processing route.
 

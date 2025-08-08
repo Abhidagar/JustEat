@@ -11,7 +11,7 @@ restaurant_cuisine = db.Table(
     db.Column("cuisine_id", db.Integer, db.ForeignKey("cuisines.id"), primary_key=True),
 )
 
-
+# Only restaurant-related attributes (Single Responsibility Principle)
 class Restaurant(db.Model):
     """Represents a restaurant business in the system.
 

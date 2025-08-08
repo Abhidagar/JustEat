@@ -7,7 +7,7 @@ from app.extensions import db
 from app.models import Category, Cuisine, Restaurant, User
 from app.utils import generate_restaurant_slug
 
-
+# only handles restaurant-related operations (Single Responsibility Principle)
 def get_all_restaurants() -> List[Restaurant]:
     """Retrieve all active restaurants sorted by creation date."""
     try:
@@ -46,7 +46,7 @@ def get_restaurant_by_slug(slug: str) -> Optional[Restaurant]:
         current_app.logger.error(f"Failed to fetch restaurant by slug {slug}: {str(e)}")
         return None
 
-
+#Dependency inversion principle(DIP): high-level modules should not depend on low-level modules
 def create_new_restaurant(
     owner_id: int,
     name: str,

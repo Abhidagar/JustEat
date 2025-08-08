@@ -10,7 +10,7 @@ class UserRole(Enum):
     CUSTOMER = "customer"
     OWNER = "owner"
 
-
+# Liskov Substitution Principle: Can use User anywhere UserMixin is expected
 class User(db.Model, UserMixin):
     """User model representing all system users.
 

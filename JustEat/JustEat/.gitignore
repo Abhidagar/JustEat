@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Testing
+.pytest_cache/
+.coverage
+.tox/
+htmlcov/
+
+# Databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Virtual environments
+venv/
+env/
+.venv/
+.env/
+
+# Logs
+logs/
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Flask specific
+instance/
+.env

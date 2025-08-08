@@ -1,0 +1,164 @@
+{% extends "layout.html" %}
+
+{% block title %}
+JustEat | Home
+{% endblock %}
+
+{% block scripts %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/filter-sidebar.css') }}">
+<script src="{{ url_for('static', filename='js/scroll-wrapper.js') }}"></script>
+<script src="{{ url_for('static', filename='js/filter-sidebar.js') }}"></script>
+{% endblock%}
+
+{% block navbar %}
+{% include "partials/_customer_navbar.html" %}
+{% endblock%}
+
+{% block content %}
+
+<div class="container-fluid px-3 px-md-4" style="max-width: 1200px;">
+    <!-- Hero Section -->
+    <div class="text-center mb-5 py-5" style="background: linear-gradient(120deg, rgba(59, 130, 246, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%); border-radius: 24px; margin-top: 2rem;">
+        <div class="mb-4">
+            <h1 class="display-5 fw-bold mb-3" style="color: var(--clean-gray-900);">
+                <span class="d-none d-md-block mb-2">Order food hassle free.</span> 
+                Discover best restaurants.
+            </h1>
+        </div>
+        <div class="d-flex align-items-center justify-content-center gap-3" style="max-width: 800px; margin: 0 auto;">
+            {% include "partials/_search_restaurant.html" %}
+            <button id="filter-toggle-btn" class="filter-toggle-btn">
+                <i class="bi bi-funnel"></i>
+                Filters
+                <span id="filter-count-badge" class="filter-count-badge" style="display: none;">0</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Cuisines Section -->
+    <div class="mb-5 p-4" style="background: rgba(255, 255, 255, 0.7); border-radius: 20px; backdrop-filter: blur(10px);">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h2 class="mb-0 fw-bold" style="color: var(--clean-gray-900);">Explore Cuisines</h2>
+        </div>
+
+        <div class="row g-3">
+            {% for id, name, image in cuisines %}
+            <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                <a href="{{ url_for('customer.search', q=name) }}" 
+                   class="home-cuisine-card">
+                    <img src="{{ image }}" alt="{{ name }}">
+                    <h6>{{ name }}</h6>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Featured Restaurants Section -->
+    <div class="mb-5 p-4" style="background: rgba(255, 255, 255, 0.7); border-radius: 20px; backdrop-filter: blur(10px);">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h2 class="mb-0 fw-bold" style="color: var(--clean-gray-900);">Featured Restaurants</h2>
+        </div>
+
+        <div class="scroll-wrapper">
+            <div class="scroll-content d-flex gap-4 overflow-x-auto pb-2" style="padding-left: 1px;">
+                {% from "macros/restaurant_card.html" import render_restaurant_card %}
+                {% for r in restaurants %}
+                {{ render_restaurant_card(r, user_favorites is defined, r.id in (user_favorites or [])) }}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Filter Sidebar -->
+<div id="filter-sidebar-overlay" class="filter-sidebar-overlay"></div>
+<div id="filter-sidebar" class="filter-sidebar">
+    <div class="filter-sidebar-header">
+        <h5 class="filter-sidebar-title">
+            <i class="bi bi-funnel me-2"></i>
+            Filter Restaurants
+            <button id="filter-close-btn" class="filter-close-btn">
+                <i class="bi bi-x"></i>
+            </button>
+        </h5>
+    </div>
+    
+    <div class="filter-sidebar-content">
+        <form id="filter-form">
+            <!-- Cuisine Filter Section -->
+            <div class="filter-section">
+                <h6>Select Cuisines</h6>
+                {% if all_cuisines %}
+                <div class="filter-options">
+                    {% for cuisine in all_cuisines %}
+                    <div class="filter-option {% if cuisine.id|string in selected_cuisines %}selected{% endif %}">
+                        <input type="checkbox" name="cuisine" value="{{ cuisine.id }}" 
+                               id="cuisine-{{ cuisine.id }}"
+                               {% if cuisine.id|string in selected_cuisines %}checked{% endif %}>
+                        <label for="cuisine-{{ cuisine.id }}">{{ cuisine.name }}</label>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p class="text-muted">No cuisines available</p>
+                {% endif %}
+            </div>
+
+            <!-- Restaurant Filter Section -->
+            <div class="filter-section">
+                <h6>Select Restaurants</h6>
+                {% if all_restaurants %}
+                <div class="filter-options">
+                    {% for restaurant in all_restaurants %}
+                    <div class="filter-option {% if restaurant.id|string in selected_restaurants %}selected{% endif %}">
+                        <input type="checkbox" name="restaurant" value="{{ restaurant.id }}" 
+                               id="restaurant-{{ restaurant.id }}"
+                               {% if restaurant.id|string in selected_restaurants %}checked{% endif %}>
+                        <label for="restaurant-{{ restaurant.id }}">
+                            {{ restaurant.name }}
+                            {% if restaurant.location %}
+                            <small>{{ restaurant.location }}</small>
+                            {% endif %}
+                        </label>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p class="text-muted">No restaurants available</p>
+                {% endif %}
+            </div>
+
+            <!-- Price Filter Section -->
+            <div class="filter-section">
+                <h6>Price Range</h6>
+                <div class="price-range-container">
+                    <div class="price-range-input">
+                        <label for="price-min">Minimum Price (₹)</label>
+                        <input type="number" id="price-min" name="price_min" 
+                               placeholder="0" min="0" step="0.01"
+                               value="{{ price_min or '' }}">
+                    </div>
+                    <div class="price-range-input">
+                        <label for="price-max">Maximum Price (₹)</label>
+                        <input type="number" id="price-max" name="price_max" 
+                               placeholder="1000" min="0" step="0.01"
+                               value="{{ price_max or '' }}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-actions">
+                <button type="button" id="clear-filters" class="filter-btn filter-btn-secondary">
+                    <i class="bi bi-arrow-clockwise"></i>
+                    Clear All
+                </button>
+                <button type="button" id="apply-filters" class="filter-btn filter-btn-primary">
+                    <i class="bi bi-check"></i>
+                    Apply Filters
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock%}

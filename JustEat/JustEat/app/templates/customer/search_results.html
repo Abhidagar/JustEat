@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block title %}
+JustEat | Restaurants
+{% endblock%}
+
+{% block scripts %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/backgrounds.css') }}">
+<script src="{{ url_for('static', filename='js/scroll-wrapper.js') }}"></script>
+{% endblock%}
+
+{% block navbar %}
+{% include "partials/_customer_navbar.html" %}
+{% endblock%}
+
+{% block content %}
+<div class="container mb-4 mb-md-5 rounded-3 max-w-lg">
+    <div class="container bg-body position-sticky z-1 top-navbar py-3">
+        <div class="container max-w-md d-flex align-items-center">
+            <div class="flex-grow-1">
+                {% include "partials/_search_restaurant.html" %}
+            </div>
+        </div>
+    </div>
+
+    {% if restaurants %}
+    <div class="p-3 rounded-3">
+        <h4 class="fw-semibold">Restaurants</h4>
+        <div class="scroll-wrapper">
+            <div class="scroll-content rounded my-1 container max-w-lg gap-2 d-flex flex-nowrap overflow-x-auto">
+                {% from "macros/restaurant_card.html" import render_restaurant_card %}
+                {% for r in restaurants %}
+                {{ render_restaurant_card(r, user_favorites is defined, r.id in (user_favorites or [])) }}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if menu_items %}
+    <div class="p-3">
+        <h4 class="fw-semibold">Menu</h4>
+        <div class="row row-cols-1 row-cols-md-4">
+            {% from "macros/menu_item_card.html" import render_mini_menu_item_card %}
+            {% for item in menu_items %}
+            <div class="col">
+                {{ render_mini_menu_item_card(item, item.id in popular_item_ids) }}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    {% if not menu_items and not restaurants %}
+    <div class="my-5 py-5 d-flex justify-content-center text-muted">
+        <h1>Nothing Found</h1>
+    </div>
+    {% endif %}
+</div>
+<div class="d-block d-lg-none h-56"></div>
+{% endblock %}

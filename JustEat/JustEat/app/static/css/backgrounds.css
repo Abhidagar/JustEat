@@ -1,0 +1,57 @@
+/* Clean, minimal backgrounds */
+.bg-clean-primary {
+  background: var(--clean-gray-50);
+  border: 1px solid var(--clean-gray-200);
+}
+
+.bg-clean-secondary {
+  background: white;
+  border: 1px solid var(--clean-gray-200);
+}
+
+.bg-clean-accent {
+  background: linear-gradient(135deg, var(--clean-primary) 0%, var(--clean-accent) 100%);
+  color: white;
+}
+
+.bg-clean-hero {
+  background: linear-gradient(135deg, var(--clean-primary) 0%, var(--clean-accent) 100%);
+  color: white;
+}
+
+.bg-clean-card {
+  background: white;
+  border: 1px solid var(--clean-gray-200);
+  box-shadow: var(--clean-shadow);
+}
+
+/* Legacy gradient classes - replaced with clean alternatives */
+.bg-gradient-primary {
+  background: var(--clean-gray-50);
+  border: 1px solid var(--clean-gray-200);
+}
+
+.bg-gradient-secondary {
+  background: white;
+  border: 1px solid var(--clean-gray-200);
+}
+
+.bg-gradient-warning {
+  background: var(--clean-gray-50);
+  border: 1px solid var(--clean-gray-200);
+}
+
+.bg-gradient-success {
+  background: linear-gradient(135deg, var(--clean-primary) 0%, var(--clean-accent) 100%);
+  color: white;
+}
+
+.bg-gradient-danger {
+  background: var(--clean-gray-50);
+  border: 1px solid var(--clean-gray-200);
+}
+
+.bg-gradient-info {
+  background: white;
+  border: 1px solid var(--clean-gray-200);
+}

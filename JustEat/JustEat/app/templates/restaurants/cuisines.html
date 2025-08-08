@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% block title %}JustEat | Cuisines{% endblock %}
+
+{% block scripts %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cuisine-cards.css') }}">
+<script defer src="{{ url_for('static', filename='js/cuisine-selector.js') }}"></script>
+{% endblock %}
+
+{% block navbar %}
+{% include "partials/_restaurant_navbar.html" %}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid position-fixed bg-body-tertiary p-0 d-flex h-100">
+    {% include "partials/_restaurant_sidebar.html" %}
+    <form method="POST" id="cuisine-form" class="d-none">
+        {{ form.hidden_tag() }}
+        <!-- Hidden Select Field -->
+        <select id=" {{ form.cuisines.id }}" class="d-none" name="{{ form.cuisines.name }}" multiple
+            data-role="select-cuisine">
+            {% for id, name, _ in form.cuisines.choices %}
+            <option value="{{ id }}">{{ name }}</option>
+            {% endfor %}
+        </select>
+    </form>
+
+    <div class="overflow-auto w-100 my-4 p-2 px-lg-5 pb-lg-0 pb-5">
+        <div class="d-flex px-3 justify-content-between align-items-end">
+            <h2 class="font-mona-sans mb-0">Cuisines</h2>
+            <button type="submit" class="btn btn-success btn-sm" form="cuisine-form">
+                <i class="bi bi-floppy"></i>
+                Save
+            </button>
+        </div>
+        <hr>
+        <!-- Card-based UI -->
+        <div class="cuisine-cards d-flex justify-content-center flex-wrap gap-3 mt-4">
+            {% for id, name, image in form.cuisines.choices %}
+            <div class="cuisine-card" data-value="{{ id }}"
+                data-selected="{{ id in form.cuisines.data }}">
+                <div class="img-container" style="height: 100px; overflow: hidden; border-radius: 12px 12px 0 0;">
+                    <img src="{{ image }}" alt="{{ name }}" class="w-100 h-100 object-fit-cover">
+                </div>
+                <div class="p-3 text-center">
+                    <h6 class="mb-0" style="font-weight: 500; font-size: 0.9rem;">{{ name }}</h6>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="d-block d-lg-none h-56"></div>
+    </div>
+</div>
+
+{% endblock %}

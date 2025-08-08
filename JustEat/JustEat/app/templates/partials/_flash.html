@@ -1,0 +1,11 @@
+<!-- Flash Messages -->
+{% with messages = get_flashed_messages(with_categories=True) -%}
+{% if messages -%}
+{% for category, message in messages -%}
+<div class="flash-message alert alert-{{ category }} alert-dismissible animate-pop-in show" role="alert">
+    {{ message }}
+    <button type="button" class="btn-close" onclick="handleAlertClose(event)" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}

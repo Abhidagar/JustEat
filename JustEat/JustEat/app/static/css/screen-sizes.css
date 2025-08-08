@@ -1,0 +1,38 @@
+.max-w-xs {
+  max-width: 400px;
+}
+
+.max-w-sm {
+  max-width: var(--bs-breakpoint-sm);
+}
+
+.max-w-md {
+  max-width: var(--bs-breakpoint-md);
+}
+
+.max-w-lg {
+  max-width: var(--bs-breakpoint-lg);
+}
+
+.bottom-navigation {
+  height: 56px;
+}
+
+.img-container {
+  width: 150px;
+  height: 150px;
+  position: relative;
+}
+
+.menu-image-container {
+  max-width: 200px;
+  height: 150px;
+}
+
+.hero-section {
+  min-height: calc(100vh - 56px);
+}
+
+.h-56 {
+  height: 56px;
+}

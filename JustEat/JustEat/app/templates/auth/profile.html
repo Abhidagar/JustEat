@@ -1,0 +1,99 @@
+{% extends "layout.html" %}
+
+{% block title %}
+JustEat | Profile
+{% endblock %}
+
+{% block navbar %}
+{% if current_user.role.value == "customer" %}
+{% include "partials/_customer_navbar.html" %}
+{% else %}
+{% include "partials/_restaurant_navbar.html" %}
+{% endif %}
+{% endblock %}
+
+
+{% block header %}
+{% endblock %}
+
+
+{% block content %}
+<div class="container my-4 my-md-5">
+    <div class="max-w-md mx-auto">
+        <!-- Profile Header Card -->
+        <div class="card shadow-sm mb-4 bg-gradient-success">
+            <div class="card-body text-center py-4">
+                <div class="mb-3">
+                    <div class="bg-white rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                        <i class="bi bi-person-fill text-success" style="font-size: 2.5rem;"></i>
+                    </div>
+                </div>
+                <h3 class="card-title font-mona-sans fw-bold mb-1">{{ current_user.name|title }}</h3>
+                <p class="card-text text-muted mb-0">
+                    <i class="bi bi-envelope me-1"></i>
+                    {{ current_user.email }}
+                </p>
+            </div>
+        </div>
+
+        <!-- Update Form Card -->
+        <div class="card shadow-sm">
+            <div class="card-header border-0 bg-body">
+                <h4 class="card-title font-mona-sans mb-0 text-center">
+                    <i class="bi bi-pencil-square me-2"></i>
+                    Update Profile
+                </h4>
+            </div>
+            <div class="card-body p-4">
+                <form method="POST" novalidate>
+                    {{ form.hidden_tag() }}
+                    {% from "macros/form_fields.html" import render_input_field, render_submit_field %}
+                    
+                    {{ render_input_field(form.name, placeholder="Enter your full name") }}
+                    {{ render_input_field(form.phone, placeholder="Enter your phone number") }}
+                    {{ render_input_field(form.email, placeholder="Enter your email address") }}
+
+                    <div class="d-grid gap-2 mt-4">
+                        {{ render_submit_field(form.submit, class="btn btn-success btn-lg") }}
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Account Info Card -->
+        <!-- <div class="card shadow-sm mt-4">
+            <div class="card-body">
+                <h6 class="card-title font-mona-sans">
+                    <i class="bi bi-info-circle me-2"></i>
+                    Account Information
+                </h6>
+                <div class="row text-sm">
+                    <div class="col-6">
+                        <p class="mb-1 text-muted">Account Type:</p>
+                        <span class="badge bg-{{ 'primary' if current_user.role.value == 'customer' else 'success' }}">
+                            {{ current_user.role.value|title }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- Security Settings Card (button to redirect to RESET PASSWORD)-->
+        <div class="card shadow-sm mt-4">
+            <div class="card-body">
+                <h6 class="card-title font-mona-sans">
+                    <i class="bi bi-shield-lock me-2"></i>
+                    Security Settings
+                </h6>
+                <p class="text-muted small mb-3">Manage your account security and password</p>
+                <div class="d-grid">
+                    <a href="{{ url_for('auth.reset_password') }}" class="btn btn-outline-success">
+                        <i class="bi bi-key me-2"></i>
+                        Reset Password
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

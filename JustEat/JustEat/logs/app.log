@@ -1,0 +1,1785 @@
+[INFO] 2025-07-25 20:42:52,334 - Logging is set up with rotation.
+[INFO] 2025-07-25 20:42:55,312 - Logging is set up with rotation.
+[INFO] 2025-07-25 20:49:37,858 - Logging is set up with rotation.
+[INFO] 2025-07-25 20:49:41,083 - Logging is set up with rotation.
+[INFO] 2025-07-26 09:57:03,384 - Logging is set up with rotation.
+[INFO] 2025-07-26 10:52:28,775 - Logging is set up with rotation.
+[ERROR] 2025-07-26 10:53:08,580 - Exception on /login [POST]
+Traceback (most recent call last):
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: users
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/app/blueprints/auth/routes.py", line 20, in login
+    user = auth_svc.login_user(form.email.data, form.password.data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/app/services/auth_service.py", line 33, in login_user
+    user = User.query.filter_by(email=email).first()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/orm/query.py", line 2759, in first
+    return self.limit(1)._iter().first()  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/orm/query.py", line 2858, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT users.id AS users_id, users.name AS users_name, users.phone AS users_phone, users.email AS users_email, users.password_hash AS users_password_hash, users.role AS users_role 
+FROM users 
+WHERE users.email = ?
+ LIMIT ? OFFSET ?]
+[parameters: ('john@example.com', 1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+[ERROR] 2025-07-26 10:53:34,940 - Exception on /login [POST]
+Traceback (most recent call last):
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: users
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/app/blueprints/auth/routes.py", line 20, in login
+    user = auth_svc.login_user(form.email.data, form.password.data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/app/services/auth_service.py", line 33, in login_user
+    user = User.query.filter_by(email=email).first()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/orm/query.py", line 2759, in first
+    return self.limit(1)._iter().first()  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/orm/query.py", line 2858, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT users.id AS users_id, users.name AS users_name, users.phone AS users_phone, users.email AS users_email, users.password_hash AS users_password_hash, users.role AS users_role 
+FROM users 
+WHERE users.email = ?
+ LIMIT ? OFFSET ?]
+[parameters: ('john@example.com', 1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+[ERROR] 2025-07-26 10:54:00,932 - Exception on /login [POST]
+Traceback (most recent call last):
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: users
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/app/blueprints/auth/routes.py", line 20, in login
+    user = auth_svc.login_user(form.email.data, form.password.data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/app/services/auth_service.py", line 33, in login_user
+    user = User.query.filter_by(email=email).first()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/orm/query.py", line 2759, in first
+    return self.limit(1)._iter().first()  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/orm/query.py", line 2858, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT users.id AS users_id, users.name AS users_name, users.phone AS users_phone, users.email AS users_email, users.password_hash AS users_password_hash, users.role AS users_role 
+FROM users 
+WHERE users.email = ?
+ LIMIT ? OFFSET ?]
+[parameters: ('john@example.com', 1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+[INFO] 2025-07-26 11:02:21,083 - Logging is set up with rotation.
+[INFO] 2025-07-26 11:02:45,034 - Logging is set up with rotation.
+[INFO] 2025-07-26 11:03:11,906 - Logging is set up with rotation.
+[INFO] 2025-07-26 11:04:00,328 - Logging is set up with rotation.
+[INFO] 2025-07-26 11:05:36,736 - Successful login for user: 1
+[INFO] 2025-07-26 11:07:20,453 - Processing search for: italian
+[INFO] 2025-07-26 11:07:29,448 - Processing search for: chinese
+[INFO] 2025-07-26 11:07:33,951 - Processing search for: mexican
+[INFO] 2025-07-26 16:14:58,497 - Logging is set up with rotation.
+[ERROR] 2025-07-26 16:15:06,106 - Exception on / [GET]
+Traceback (most recent call last):
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/app/blueprints/customer/routes.py", line 33, in home
+    return render_template(
+           ^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/app/templates/customer/home.html", line 1, in top-level template code
+    {% extends "layout.html" %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/app/templates/layout.html", line 66, in top-level template code
+    {% block navbar %}
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/app/templates/customer/home.html", line 12, in block 'navbar'
+    {% include "partials/_customer_navbar.html" %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/app/templates/partials/_customer_navbar.html", line 50, in top-level template code
+    {% if cart_summary.total_quantity > 0 %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: 'dict object' has no attribute 'total_quantity'
+[ERROR] 2025-07-26 16:15:09,208 - Exception on / [GET]
+Traceback (most recent call last):
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/app/blueprints/customer/routes.py", line 33, in home
+    return render_template(
+           ^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/venv/lib/python3.12/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/app/templates/customer/home.html", line 1, in top-level template code
+    {% extends "layout.html" %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/app/templates/layout.html", line 66, in top-level template code
+    {% block navbar %}
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/app/templates/customer/home.html", line 12, in block 'navbar'
+    {% include "partials/_customer_navbar.html" %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/abhishekdagar/Downloads/JustEat/JustEat/app/templates/partials/_customer_navbar.html", line 50, in top-level template code
+    {% if cart_summary.total_quantity > 0 %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: 'dict object' has no attribute 'total_quantity'
+[INFO] 2025-07-26 16:16:59,274 - Logging is set up with rotation.
+[INFO] 2025-07-26 16:17:07,091 - Logging is set up with rotation.
+[INFO] 2025-07-26 16:21:29,288 - Logging is set up with rotation.
+[INFO] 2025-07-26 16:21:37,300 - Logging is set up with rotation.
+[INFO] 2025-07-26 16:23:25,807 - Successful login for user: 1
+[INFO] 2025-07-26 16:25:28,012 - Processing search for: thai
+[INFO] 2025-07-26 16:26:04,723 - Processing search for: thai
+[WARNING] 2025-07-26 16:27:34,439 - Cart restaurant mismatch for user 1. Expected 3, found 1
+[WARNING] 2025-07-26 16:27:55,454 - Cart restaurant mismatch for user 1. Expected 3, found 1
+[WARNING] 2025-07-26 16:28:21,354 - Cart restaurant mismatch for user 1. Expected 3, found 1
+[INFO] 2025-07-26 16:28:54,506 - Added new item 3 to cart 1
+[INFO] 2025-07-26 16:29:11,746 - Added new item 5 to cart 1
+[WARNING] 2025-07-26 18:08:27,708 - Cart restaurant mismatch for user 1. Expected 5, found 1
+[INFO] 2025-07-26 18:10:00,314 - Processing search for: italian
+[INFO] 2025-07-26 19:35:22,454 - Logging is set up with rotation.
+[INFO] 2025-07-26 19:37:08,704 - Logging is set up with rotation.
+[INFO] 2025-07-26 19:37:47,411 - Successful login for user: 1
+[INFO] 2025-07-26 19:37:54,374 - Processing search for: italian
+[INFO] 2025-07-26 19:39:33,467 - Logging is set up with rotation.
+[INFO] 2025-07-28 09:27:26,193 - Logging is set up with rotation.
+[INFO] 2025-07-28 09:28:10,812 - Successful login for user: 1
+[INFO] 2025-07-28 09:30:15,341 - Order 3 placed for user 1, total: 50.06
+[INFO] 2025-07-28 09:41:09,916 - Logging is set up with rotation.
+[INFO] 2025-07-28 09:42:28,175 - Processing search for: thai
+[INFO] 2025-07-28 09:45:17,677 - Logging is set up with rotation.
+[INFO] 2025-07-28 09:51:40,255 - Logging is set up with rotation.
+[INFO] 2025-07-28 10:36:24,133 - Logging is set up with rotation.
+[INFO] 2025-07-28 10:37:49,654 - Created new cart 1 for user 1
+[INFO] 2025-07-28 10:37:49,667 - Added new item 21 to cart 1
+[INFO] 2025-07-28 10:37:52,578 - Added new item 22 to cart 1
+[INFO] 2025-07-28 10:37:55,930 - Added new item 23 to cart 1
+[INFO] 2025-07-28 10:37:59,600 - Order 4 placed for user 1, total: 33.58
+[INFO] 2025-07-28 10:38:39,689 - Successful login for user: 3
+[INFO] 2025-07-28 10:41:03,059 - Successful login for user: 1
+[INFO] 2025-07-28 10:41:42,261 - Successful login for user: 3
+[INFO] 2025-07-28 10:42:15,642 - Created new restaurant 6
+[INFO] 2025-07-28 10:43:17,962 - Set status to active for restaurant 6
+[WARNING] 2025-07-28 10:47:12,515 - Deleted restaurant 6
+[INFO] 2025-07-28 10:48:56,771 - Processing search for: italian
+[INFO] 2025-07-28 11:00:01,821 - Logging is set up with rotation.
+[INFO] 2025-07-28 11:14:42,786 - Logging is set up with rotation.
+[INFO] 2025-07-28 11:22:06,390 - Logging is set up with rotation.
+[INFO] 2025-07-28 11:22:26,244 - Logging is set up with rotation.
+[INFO] 2025-07-28 11:25:31,530 - Logging is set up with rotation.
+[INFO] 2025-07-28 11:25:57,381 - Logging is set up with rotation.
+[INFO] 2025-07-28 19:07:04,752 - Logging is set up with rotation.
+[INFO] 2025-07-28 19:07:25,375 - Logging is set up with rotation.
+[INFO] 2025-07-28 19:07:56,122 - Logging is set up with rotation.
+[INFO] 2025-07-28 19:18:39,930 - Logging is set up with rotation.
+[INFO] 2025-07-28 19:33:45,854 - Logging is set up with rotation.
+[INFO] 2025-07-28 20:19:45,559 - Logging is set up with rotation.
+[INFO] 2025-07-28 20:28:55,336 - Order 3 placed for user 1, total: 62.19
+[INFO] 2025-07-28 20:29:24,971 - Updated order 3 status to delivered
+[INFO] 2025-07-28 20:30:08,395 - Added 2 item ratings and restaurant rating for order 3
+[INFO] 2025-07-28 20:31:42,638 - Created new cart 1 for user 1
+[INFO] 2025-07-28 20:31:42,654 - Added new item 6 to cart 1
+[INFO] 2025-07-28 20:31:44,534 - Added new item 7 to cart 1
+[INFO] 2025-07-28 20:31:49,038 - Added new item 9 to cart 1
+[INFO] 2025-07-28 20:31:53,056 - Order 4 placed for user 1, total: 48.89
+[INFO] 2025-07-28 20:32:43,972 - Created new cart 1 for user 1
+[INFO] 2025-07-28 20:32:43,979 - Added new item 21 to cart 1
+[INFO] 2025-07-28 20:32:46,862 - Added new item 24 to cart 1
+[INFO] 2025-07-28 20:32:52,402 - Order 5 placed for user 1, total: 21.09
+[INFO] 2025-07-28 20:33:02,307 - Updated order 5 status to delivered
+[INFO] 2025-07-28 20:33:28,471 - Added 2 item ratings and restaurant rating for order 5
+[INFO] 2025-07-28 20:35:05,917 - Created new restaurant 6
+[INFO] 2025-07-28 20:35:36,348 - Created new cart 1 for user 1
+[INFO] 2025-07-28 20:35:36,354 - Added new item 16 to cart 1
+[INFO] 2025-07-28 20:35:38,060 - Added new item 17 to cart 1
+[INFO] 2025-07-28 20:35:41,648 - Order 6 placed for user 1, total: 25.17
+[INFO] 2025-07-28 20:36:00,465 - Set status to active for restaurant 6
+[WARNING] 2025-07-28 20:37:26,735 - Invalid order status: all
+[INFO] 2025-07-29 06:59:22,615 - Logging is set up with rotation.
+[WARNING] 2025-07-29 07:00:56,999 - Deleted restaurant 6
+[INFO] 2025-07-29 09:57:28,491 - Logging is set up with rotation.
+[INFO] 2025-07-30 03:55:46,098 - Logging is set up with rotation.
+[INFO] 2025-07-30 03:56:19,852 - Successful login for user: 1
+[INFO] 2025-07-30 04:04:21,326 - Successful login for user: 1
+[INFO] 2025-07-30 04:04:50,012 - Processing search for: taco town
+[INFO] 2025-07-30 04:05:02,322 - Processing search for: thai
+[INFO] 2025-07-30 04:13:47,792 - Successful login for user: 1
+[INFO] 2025-07-30 04:20:06,461 - Logging is set up with rotation.
+[INFO] 2025-07-30 04:26:28,344 - Logging is set up with rotation.
+[INFO] 2025-07-30 04:42:54,813 - Successful login for user: 1
+[INFO] 2025-07-30 04:45:40,729 - Successful login for user: 1
+[INFO] 2025-07-30 04:45:50,960 - Successful login for user: 1
+[INFO] 2025-07-30 04:46:04,618 - Successful login for user: 1
+[INFO] 2025-07-30 04:48:27,400 - Logging is set up with rotation.
+[INFO] 2025-07-30 04:49:19,088 - Successful login for user: 1
+[INFO] 2025-07-30 04:58:10,447 - Logging is set up with rotation.
+[INFO] 2025-07-30 05:01:06,252 - Logging is set up with rotation.
+[INFO] 2025-07-30 05:04:08,207 - Logging is set up with rotation.
+[INFO] 2025-07-30 05:04:35,536 - Logging is set up with rotation.
+[INFO] 2025-07-30 05:07:19,056 - Logging is set up with rotation.
+[INFO] 2025-07-30 05:07:57,725 - Logging is set up with rotation.
+[INFO] 2025-07-30 05:08:16,226 - Logging is set up with rotation.
+[INFO] 2025-07-30 05:12:36,688 - Logging is set up with rotation.
+[INFO] 2025-07-30 05:35:43,068 - Logging is set up with rotation.
+[INFO] 2025-07-30 05:49:33,197 - Logging is set up with rotation.
+[INFO] 2025-07-30 05:50:25,859 - Successful login for user: 1
+[INFO] 2025-07-30 05:59:14,168 - Logging is set up with rotation.
+[INFO] 2025-07-30 06:02:33,057 - Logging is set up with rotation.
+[INFO] 2025-07-30 06:03:18,439 - Logging is set up with rotation.
+[INFO] 2025-07-30 06:04:03,271 - Logging is set up with rotation.
+[INFO] 2025-07-30 06:05:11,296 - Logging is set up with rotation.
+[INFO] 2025-07-30 06:07:34,700 - Logging is set up with rotation.
+[INFO] 2025-07-30 06:13:24,523 - Logging is set up with rotation.
+[INFO] 2025-07-30 06:15:04,711 - Logging is set up with rotation.
+[INFO] 2025-07-30 06:15:08,264 - Logging is set up with rotation.
+[INFO] 2025-07-30 06:46:50,612 - Successful login for user: 1
+[INFO] 2025-07-30 06:59:51,382 - Successful login for user: 1
+[INFO] 2025-07-30 07:00:19,284 - Processing search for: italian
+[INFO] 2025-07-30 07:00:31,622 - Processing search for: chinese
+[INFO] 2025-07-30 07:00:39,331 - Processing search for: indian
+[INFO] 2025-07-30 07:00:45,481 - Processing search for: thai
+[INFO] 2025-07-30 07:00:52,619 - Processing search for: mexican
+[INFO] 2025-07-30 07:01:07,588 - Processing search for: thai
+[INFO] 2025-07-30 07:01:28,446 - Processing search for: taco town
+[INFO] 2025-07-30 07:01:38,378 - Processing search for: thai
+[INFO] 2025-07-30 07:01:56,921 - Processing search for: italian
+[INFO] 2025-07-30 07:02:51,375 - Successful login for user: 3
+[INFO] 2025-07-30 07:09:33,902 - Successful login for user: 1
+[INFO] 2025-07-30 07:11:01,965 - Successful login for user: 4
+[INFO] 2025-07-30 07:11:16,742 - Updated order 6 status to delivered
+[INFO] 2025-07-30 07:11:36,346 - Updated order 4 status to delivered
+[INFO] 2025-07-30 07:12:05,833 - Successful login for user: 1
+[INFO] 2025-07-30 07:12:25,545 - Added 2 item ratings and restaurant rating for order 6
+[INFO] 2025-07-30 07:13:00,879 - Added 3 item ratings and restaurant rating for order 4
+[INFO] 2025-07-30 07:13:16,249 - Created new cart 1 for user 1
+[INFO] 2025-07-30 07:13:16,252 - Added new item 12 to cart 1
+[INFO] 2025-07-30 07:13:19,283 - Added new item 13 to cart 1
+[INFO] 2025-07-30 07:13:23,841 - Order 7 placed for user 1, total: 37.20
+[INFO] 2025-07-30 07:13:40,258 - Successful login for user: 4
+[INFO] 2025-07-30 07:13:47,120 - Updated order 7 status to delivered
+[INFO] 2025-07-30 07:14:05,015 - Successful login for user: 1
+[INFO] 2025-07-30 07:14:18,331 - Added 2 item ratings and restaurant rating for order 7
+[INFO] 2025-07-30 07:14:48,279 - Successful login for user: 4
+[INFO] 2025-07-30 07:30:52,653 - Successful login for user: 3
+[INFO] 2025-07-30 07:44:38,173 - Successful login for user: 1
+[INFO] 2025-07-30 07:45:38,200 - Processing search for: italian
+[INFO] 2025-07-30 07:45:57,595 - Processing search for: chinese
+[INFO] 2025-07-30 07:46:15,135 - Processing search for: indian
+[INFO] 2025-07-30 07:46:38,912 - Processing search for: italian
+[INFO] 2025-07-30 07:47:08,156 - Processing search for: mexican
+[INFO] 2025-07-30 10:01:59,717 - Successful login for user: 1
+[INFO] 2025-07-30 10:07:38,539 - Successful login for user: 1
+[INFO] 2025-07-30 10:24:34,804 - Successful login for user: 1
+[INFO] 2025-07-30 10:35:17,022 - Logging is set up with rotation.
+[INFO] 2025-07-30 10:47:49,763 - Logging is set up with rotation.
+[INFO] 2025-07-30 10:48:28,959 - Logging is set up with rotation.
+[INFO] 2025-07-30 10:49:11,866 - Logging is set up with rotation.
+[INFO] 2025-07-30 10:49:29,605 - Logging is set up with rotation.
+[ERROR] 2025-07-30 10:52:08,687 - Error updating password for user 1: 'User' object has no attribute 'set_password'
+[ERROR] 2025-07-30 10:52:17,971 - Error updating password for user 1: 'User' object has no attribute 'set_password'
+[ERROR] 2025-07-30 10:52:23,819 - Error updating password for user 1: 'User' object has no attribute 'set_password'
+[INFO] 2025-07-30 10:52:53,830 - Created new cart 1 for user 1
+[INFO] 2025-07-30 10:52:53,837 - Added new item 16 to cart 1
+[INFO] 2025-07-30 10:52:57,352 - Removed item 16 from cart 1
+[INFO] 2025-07-30 10:52:57,370 - Deleted empty cart 1
+[INFO] 2025-07-30 10:55:05,598 - Logging is set up with rotation.
+[INFO] 2025-07-30 10:59:26,017 - Successful login for user: 1
+[ERROR] 2025-07-30 11:01:17,165 - Error updating password for user 1: 'User' object has no attribute 'set_password'
+[INFO] 2025-07-30 11:01:58,650 - Successful login for user: 1
+[INFO] 2025-07-30 11:06:29,115 - Logging is set up with rotation.
+[INFO] 2025-07-30 11:07:01,261 - Logging is set up with rotation.
+[INFO] 2025-07-30 11:07:58,994 - Logging is set up with rotation.
+[INFO] 2025-07-30 11:09:16,421 - Logging is set up with rotation.
+[INFO] 2025-07-30 11:10:58,573 - Password updated for user: 1
+[INFO] 2025-07-30 11:11:19,335 - Successful login for user: 1
+[INFO] 2025-07-30 11:11:36,585 - Successful login for user: 3
+[INFO] 2025-07-30 18:15:49,489 - Successful login for user: 3
+[INFO] 2025-07-31 04:33:46,351 - Logging is set up with rotation.
+[INFO] 2025-07-31 04:34:33,789 - Logging is set up with rotation.
+[INFO] 2025-07-31 04:34:46,209 - Logging is set up with rotation.
+[INFO] 2025-07-31 04:48:41,719 - Successful login for user: 1
+[INFO] 2025-07-31 04:54:49,697 - Logging is set up with rotation.
+[INFO] 2025-07-31 04:55:13,615 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:01:48,422 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:01:51,857 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:09:59,285 - Successful login for user: 3
+[INFO] 2025-07-31 05:10:19,291 - Set special status to 1 for item 21
+[INFO] 2025-07-31 05:10:24,663 - Set special status to 1 for item 22
+[INFO] 2025-07-31 05:11:20,598 - Successful login for user: 1
+[INFO] 2025-07-31 05:11:53,970 - Successful login for user: 1
+[INFO] 2025-07-31 05:15:28,871 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:15:38,726 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:15:54,487 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:16:55,472 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:21:43,476 - Successful login for user: 3
+[INFO] 2025-07-31 05:24:44,765 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:28:08,729 - Updated 3 cuisines for restaurant 5
+[INFO] 2025-07-31 05:38:30,810 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:39:31,177 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:40:50,769 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:42:10,112 - Successful login for user: 1
+[INFO] 2025-07-31 05:43:13,883 - Removed item 1 from cart 1
+[INFO] 2025-07-31 05:43:17,722 - Added new item 3 to cart 1
+[INFO] 2025-07-31 05:43:23,566 - Order 3 placed for user 1, total: 33.65
+[INFO] 2025-07-31 05:45:06,314 - Successful login for user: 4
+[INFO] 2025-07-31 05:48:14,090 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:14,381 - Successful login for user: 1
+[INFO] 2025-07-31 05:48:16,940 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:16,940 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:17,085 - Successful login for user: 1
+[INFO] 2025-07-31 05:48:17,085 - Successful login for user: 1
+[INFO] 2025-07-31 05:48:17,167 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:17,167 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:17,167 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:17,387 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:17,387 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:17,387 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:17,387 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:17,476 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:17,476 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:17,476 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:17,476 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:17,476 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:17,698 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:17,698 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:17,698 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:17,698 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:17,698 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:17,698 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:17,923 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:17,923 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:17,923 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:17,923 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:17,923 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:17,923 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:17,923 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,077 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,077 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,077 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,077 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,077 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,077 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,077 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,077 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,335 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,335 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,335 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,335 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,335 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,335 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,335 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,335 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,335 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,499 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,499 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,499 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,499 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,499 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,499 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,499 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,499 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,499 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,499 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,741 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,741 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,741 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,741 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,741 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,741 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,741 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,741 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,741 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,741 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,741 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,831 - Created new restaurant 1
+[INFO] 2025-07-31 05:48:18,831 - Created new restaurant 1
+[INFO] 2025-07-31 05:48:18,831 - Created new restaurant 1
+[INFO] 2025-07-31 05:48:18,831 - Created new restaurant 1
+[INFO] 2025-07-31 05:48:18,831 - Created new restaurant 1
+[INFO] 2025-07-31 05:48:18,831 - Created new restaurant 1
+[INFO] 2025-07-31 05:48:18,831 - Created new restaurant 1
+[INFO] 2025-07-31 05:48:18,831 - Created new restaurant 1
+[INFO] 2025-07-31 05:48:18,831 - Created new restaurant 1
+[INFO] 2025-07-31 05:48:18,831 - Created new restaurant 1
+[INFO] 2025-07-31 05:48:18,831 - Created new restaurant 1
+[INFO] 2025-07-31 05:48:18,945 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,945 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,945 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,945 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,945 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,945 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,945 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,945 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,945 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,945 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,945 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:18,945 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:48:19,032 - Updated details for restaurant 1
+[INFO] 2025-07-31 05:48:19,032 - Updated details for restaurant 1
+[INFO] 2025-07-31 05:48:19,032 - Updated details for restaurant 1
+[INFO] 2025-07-31 05:48:19,032 - Updated details for restaurant 1
+[INFO] 2025-07-31 05:48:19,032 - Updated details for restaurant 1
+[INFO] 2025-07-31 05:48:19,032 - Updated details for restaurant 1
+[INFO] 2025-07-31 05:48:19,032 - Updated details for restaurant 1
+[INFO] 2025-07-31 05:48:19,032 - Updated details for restaurant 1
+[INFO] 2025-07-31 05:48:19,032 - Updated details for restaurant 1
+[INFO] 2025-07-31 05:48:19,032 - Updated details for restaurant 1
+[INFO] 2025-07-31 05:48:19,032 - Updated details for restaurant 1
+[INFO] 2025-07-31 05:48:19,032 - Updated details for restaurant 1
+[INFO] 2025-07-31 05:49:46,430 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:50:30,857 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:50:46,465 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:50:49,649 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:53:04,599 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:53:16,135 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:53:36,072 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:55:11,210 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:55:11,518 - Successful login for user: 1
+[INFO] 2025-07-31 05:55:11,630 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:55:11,630 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:55:11,772 - Successful login for user: 1
+[INFO] 2025-07-31 05:55:11,772 - Successful login for user: 1
+[INFO] 2025-07-31 05:55:11,860 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:55:11,860 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:55:11,860 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:55:12,079 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:55:12,079 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:55:12,079 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:55:12,079 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:55:12,172 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:55:12,172 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:55:12,172 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:55:12,172 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:55:12,172 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:55:12,376 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:55:12,376 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:55:12,376 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:55:12,376 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:55:12,376 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:55:12,376 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:55:12,561 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:55:12,561 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:55:12,561 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:55:12,561 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:55:12,561 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:55:12,561 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:55:12,561 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:55:40,192 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:55:40,470 - Successful login for user: 1
+[INFO] 2025-07-31 05:57:22,616 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:57:22,913 - Successful login for user: 1
+[INFO] 2025-07-31 05:57:23,028 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:57:23,028 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:57:23,166 - Successful login for user: 1
+[INFO] 2025-07-31 05:57:23,166 - Successful login for user: 1
+[INFO] 2025-07-31 05:57:23,255 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:57:23,255 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:57:23,255 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:57:23,465 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:57:23,465 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:57:23,465 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:57:23,465 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:57:23,551 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:57:23,551 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:57:23,551 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:57:23,551 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:57:23,551 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:57:23,741 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:57:23,741 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:57:23,741 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:57:23,741 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:57:23,741 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:57:23,741 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:57:23,908 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:57:23,908 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:57:23,908 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:57:23,908 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:57:23,908 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:57:23,908 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:57:23,908 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:01,544 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:01,841 - Successful login for user: 1
+[INFO] 2025-07-31 05:58:01,964 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:01,964 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:02,105 - Successful login for user: 1
+[INFO] 2025-07-31 05:58:02,105 - Successful login for user: 1
+[INFO] 2025-07-31 05:58:02,189 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:02,189 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:02,189 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:02,403 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:02,403 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:02,403 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:02,403 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:02,489 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:02,489 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:02,489 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:02,489 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:02,489 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:02,689 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:02,689 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:02,689 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:02,689 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:02,689 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:02,689 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:02,858 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:02,858 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:02,858 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:02,858 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:02,858 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:02,858 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:02,858 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,023 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,023 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,023 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,023 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,023 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,023 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,023 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,023 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,247 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,247 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,247 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,247 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,247 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,247 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,247 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,247 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,247 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,418 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,418 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,418 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,418 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,418 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,418 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,418 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,418 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,418 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,418 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,684 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,684 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,684 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,684 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,684 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,684 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,684 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,684 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,684 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,684 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,684 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,773 - Created new restaurant 1
+[INFO] 2025-07-31 05:58:03,773 - Created new restaurant 1
+[INFO] 2025-07-31 05:58:03,773 - Created new restaurant 1
+[INFO] 2025-07-31 05:58:03,773 - Created new restaurant 1
+[INFO] 2025-07-31 05:58:03,773 - Created new restaurant 1
+[INFO] 2025-07-31 05:58:03,773 - Created new restaurant 1
+[INFO] 2025-07-31 05:58:03,773 - Created new restaurant 1
+[INFO] 2025-07-31 05:58:03,773 - Created new restaurant 1
+[INFO] 2025-07-31 05:58:03,773 - Created new restaurant 1
+[INFO] 2025-07-31 05:58:03,773 - Created new restaurant 1
+[INFO] 2025-07-31 05:58:03,773 - Created new restaurant 1
+[INFO] 2025-07-31 05:58:03,888 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,888 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,888 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,888 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,888 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,888 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,888 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,888 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,888 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,888 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,888 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,888 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:58:03,988 - Updated details for restaurant 1
+[INFO] 2025-07-31 05:58:03,988 - Updated details for restaurant 1
+[INFO] 2025-07-31 05:58:03,988 - Updated details for restaurant 1
+[INFO] 2025-07-31 05:58:03,988 - Updated details for restaurant 1
+[INFO] 2025-07-31 05:58:03,988 - Updated details for restaurant 1
+[INFO] 2025-07-31 05:58:03,988 - Updated details for restaurant 1
+[INFO] 2025-07-31 05:58:03,988 - Updated details for restaurant 1
+[INFO] 2025-07-31 05:58:03,988 - Updated details for restaurant 1
+[INFO] 2025-07-31 05:58:03,988 - Updated details for restaurant 1
+[INFO] 2025-07-31 05:58:03,988 - Updated details for restaurant 1
+[INFO] 2025-07-31 05:58:03,988 - Updated details for restaurant 1
+[INFO] 2025-07-31 05:58:03,988 - Updated details for restaurant 1
+[INFO] 2025-07-31 05:58:15,751 - Logging is set up with rotation.
+[INFO] 2025-07-31 05:59:41,880 - Successful login for user: 4
+[INFO] 2025-07-31 06:08:43,264 - Logging is set up with rotation.
+[INFO] 2025-07-31 06:09:06,961 - Logging is set up with rotation.
+[INFO] 2025-07-31 06:09:10,178 - Logging is set up with rotation.
+[INFO] 2025-07-31 06:15:38,317 - Successful login for user: 1
+[INFO] 2025-07-31 06:15:53,703 - Processing search for: italian
+[INFO] 2025-07-31 06:16:39,646 - Processing search for: taco town
+[INFO] 2025-07-31 06:17:26,833 - Processing search for: mexican
+[INFO] 2025-07-31 06:18:14,431 - Processing search for: italian
+[INFO] 2025-07-31 06:18:21,463 - Processing search for: chinese
+[INFO] 2025-07-31 06:18:29,287 - Processing search for: indian
+[INFO] 2025-07-31 06:19:43,374 - Successful login for user: 4
+[INFO] 2025-07-31 06:22:06,093 - Successful login for user: 1
+[INFO] 2025-07-31 06:29:43,924 - Processing search for: chinese
+[INFO] 2025-07-31 06:30:04,603 - Processing search for: thai
+[INFO] 2025-07-31 06:30:10,389 - Processing search for: italian
+[INFO] 2025-07-31 06:30:13,468 - Processing search for: italian
+[INFO] 2025-07-31 06:49:10,360 - Processing search for: italian
+[INFO] 2025-07-31 06:50:39,343 - Processing search for: italian
+[INFO] 2025-07-31 06:50:43,727 - Processing search for: chinese
+[INFO] 2025-07-31 06:50:49,660 - Processing search for: indian
+[INFO] 2025-07-31 06:50:58,437 - Processing search for: mexican
+[INFO] 2025-07-31 06:51:03,584 - Processing search for: thai
+[INFO] 2025-07-31 06:58:40,966 - Processing search for: italian
+[INFO] 2025-07-31 06:58:45,203 - Processing search for: chinese
+[INFO] 2025-07-31 06:59:07,414 - Processing search for: italian
+[INFO] 2025-07-31 06:59:13,397 - Processing search for: chinese
+[INFO] 2025-07-31 07:11:46,168 - Processing search for: italian
+[INFO] 2025-07-31 07:11:51,293 - Processing search for: chinese
+[INFO] 2025-07-31 07:11:59,008 - Processing search for: indian
+[INFO] 2025-07-31 07:12:25,308 - Processing search for: mexican
+[INFO] 2025-07-31 07:12:29,190 - Processing search for: thai
+[INFO] 2025-07-31 07:13:17,020 - Processing search for: mexican
+[INFO] 2025-07-31 07:13:33,694 - Processing search for: indian
+[INFO] 2025-07-31 07:13:47,822 - Processing search for: chinese
+[INFO] 2025-07-31 07:14:15,518 - Processing search for: italian
+[INFO] 2025-07-31 07:14:19,908 - Processing search for: indian
+[INFO] 2025-07-31 07:14:29,353 - Processing search for: mexican
+[INFO] 2025-07-31 07:16:05,430 - Successful login for user: 4
+[INFO] 2025-07-31 07:19:07,765 - Successful login for user: 1
+[INFO] 2025-07-31 07:35:17,962 - Logging is set up with rotation.
+[INFO] 2025-07-31 07:36:04,462 - Logging is set up with rotation.
+[INFO] 2025-07-31 07:40:04,177 - Processing search for: chinese
+[INFO] 2025-07-31 07:40:38,336 - Successful login for user: 4
+[INFO] 2025-07-31 07:49:46,221 - Logging is set up with rotation.
+[INFO] 2025-07-31 09:02:16,036 - Logging is set up with rotation.
+[INFO] 2025-07-31 09:02:18,914 - Logging is set up with rotation.
+[INFO] 2025-07-31 09:40:44,547 - Set special status to 1 for item 3
+[INFO] 2025-07-31 09:40:53,753 - Set special status to 1 for item 4
+[INFO] 2025-07-31 09:49:12,579 - Successful login for user: 1
+[INFO] 2025-07-31 09:51:51,363 - Successful login for user: 3
+[INFO] 2025-07-31 09:52:07,032 - Successful login for user: 4
+[INFO] 2025-07-31 10:06:03,093 - Processing search for: italian
+[INFO] 2025-07-31 10:06:07,145 - Processing search for: chinese
+[INFO] 2025-07-31 10:06:15,532 - Processing search for: indian
+[INFO] 2025-07-31 10:06:22,857 - Processing search for: taco town
+[INFO] 2025-07-31 10:06:37,723 - Processing search for: curry corner
+[INFO] 2025-07-31 10:07:08,612 - Created new cart 1 for user 1
+[INFO] 2025-07-31 10:07:08,629 - Added new item 21 to cart 1
+[INFO] 2025-07-31 10:07:11,336 - Added new item 22 to cart 1
+[INFO] 2025-07-31 10:07:18,659 - Order 4 placed for user 1, total: 26.10
+[INFO] 2025-07-31 10:08:13,243 - Updated order 4 status to delivered
+[INFO] 2025-07-31 10:08:43,582 - Added 2 item ratings and restaurant rating for order 4
+[WARNING] 2025-07-31 11:00:24,449 - Invalid order status: all
+[INFO] 2025-08-03 08:33:05,225 - Logging is set up with rotation.
+[INFO] 2025-08-03 08:33:12,497 - Logging is set up with rotation.
+[INFO] 2025-08-04 03:45:50,184 - Logging is set up with rotation.
+[INFO] 2025-08-04 03:45:57,789 - Logging is set up with rotation.
+[INFO] 2025-08-04 03:50:17,754 - Successful login for user: 1
+[INFO] 2025-08-04 03:57:18,545 - Logging is set up with rotation.
+[INFO] 2025-08-04 03:58:02,193 - Logging is set up with rotation.
+[INFO] 2025-08-04 04:01:39,012 - Logging is set up with rotation.
+[INFO] 2025-08-04 04:03:08,261 - Logging is set up with rotation.
+[INFO] 2025-08-04 04:07:51,560 - Logging is set up with rotation.
+[INFO] 2025-08-04 04:08:13,660 - Logging is set up with rotation.
+[INFO] 2025-08-04 04:10:27,375 - Logging is set up with rotation.
+[INFO] 2025-08-04 04:12:15,631 - Logging is set up with rotation.
+[INFO] 2025-08-04 04:12:48,747 - Successful login for user: 4
+[INFO] 2025-08-04 04:18:06,864 - Logging is set up with rotation.
+[INFO] 2025-08-04 04:18:29,129 - Logging is set up with rotation.
+[INFO] 2025-08-04 04:22:08,630 - Logging is set up with rotation.
+[INFO] 2025-08-04 04:22:16,360 - Logging is set up with rotation.
+[INFO] 2025-08-04 04:25:45,054 - Logging is set up with rotation.
+[INFO] 2025-08-04 04:28:05,360 - Created new cart 1 for user 1
+[INFO] 2025-08-04 04:28:05,366 - Added new item 25 to cart 1
+[INFO] 2025-08-04 04:28:12,326 - Order 5 placed for user 1, total: 10.29
+[INFO] 2025-08-04 04:28:22,310 - Created new cart 1 for user 1
+[INFO] 2025-08-04 04:28:22,314 - Added new item 25 to cart 1
+[INFO] 2025-08-04 04:28:29,252 - Order 6 placed for user 1, total: 10.29
+[INFO] 2025-08-04 04:28:59,164 - Updated order 6 status to delivered
+[INFO] 2025-08-04 04:29:05,207 - Updated order 5 status to delivered
+[INFO] 2025-08-04 04:32:51,808 - Logging is set up with rotation.
+[INFO] 2025-08-04 04:43:13,680 - Logging is set up with rotation.
+[INFO] 2025-08-04 04:43:43,208 - Logging is set up with rotation.
+[INFO] 2025-08-04 04:45:24,924 - Logging is set up with rotation.
+[INFO] 2025-08-04 04:45:44,614 - Logging is set up with rotation.
+[INFO] 2025-08-04 04:45:57,615 - Logging is set up with rotation.
+[INFO] 2025-08-04 04:58:38,796 - Logging is set up with rotation.
+[INFO] 2025-08-04 05:03:11,872 - Processing filtered search for: Thai with filters
+[INFO] 2025-08-04 05:03:48,983 - Processing filtered search for: Thai with filters
+[INFO] 2025-08-04 05:06:43,846 - Processing filtered search for: Thai with filters
+[INFO] 2025-08-04 05:07:10,628 - Logging is set up with rotation.
+[INFO] 2025-08-04 05:07:21,130 - Processing filtered search for: Italian with filters
+[INFO] 2025-08-04 05:10:27,047 - Processing filtered search for: Italian with filters
+[INFO] 2025-08-04 05:11:18,246 - Processing filtered search for: Italian with filters
+[INFO] 2025-08-04 05:11:21,923 - Processing filtered search for: Chinese with filters
+[INFO] 2025-08-04 05:11:25,745 - Processing filtered search for: Italian with filters
+[INFO] 2025-08-04 05:11:36,962 - Processing filtered search for: Italian with filters
+[INFO] 2025-08-04 05:12:10,950 - Processing filtered search for: Italian with filters
+[INFO] 2025-08-04 05:15:08,902 - Logging is set up with rotation.
+[INFO] 2025-08-04 05:16:13,593 - Processing filtered search for: Italian with filters
+[INFO] 2025-08-04 05:16:42,911 - Processing filtered search for: None with filters
+[INFO] 2025-08-04 05:17:04,818 - Processing filtered search for: None with filters
+[INFO] 2025-08-04 05:18:00,806 - Processing filtered search for: None with filters
+[INFO] 2025-08-04 05:18:23,346 - Processing filtered search for: None with filters
+[INFO] 2025-08-04 05:18:55,261 - Processing filtered search for: None with filters
+[INFO] 2025-08-04 05:19:24,090 - Processing filtered search for: None with filters
+[INFO] 2025-08-04 06:46:29,955 - Processing filtered search for: Italian with filters
+[INFO] 2025-08-04 06:46:32,726 - Processing filtered search for: Chinese with filters
+[INFO] 2025-08-04 06:46:36,184 - Processing filtered search for: Indian with filters
+[INFO] 2025-08-04 06:46:39,812 - Processing filtered search for: Mexican with filters
+[INFO] 2025-08-04 06:46:42,978 - Processing filtered search for: Thai with filters
+[INFO] 2025-08-04 06:55:04,637 - Added 1 item ratings and restaurant rating for order 6
+[INFO] 2025-08-04 07:01:43,702 - Logging is set up with rotation.
+[INFO] 2025-08-04 07:05:43,685 - Logging is set up with rotation.
+[INFO] 2025-08-04 07:11:03,008 - Set special status to 1 for item 22
+[INFO] 2025-08-04 08:56:56,547 - Logging is set up with rotation.
+[INFO] 2025-08-04 09:24:08,073 - Created new cart 1 for user 1
+[INFO] 2025-08-04 09:24:08,077 - Added new item 16 to cart 1
+[INFO] 2025-08-04 09:24:09,950 - Added new item 17 to cart 1
+[INFO] 2025-08-04 10:35:09,941 - Processing filtered search for: Indian with filters
+[INFO] 2025-08-04 10:44:06,224 - Logging is set up with rotation.
+[INFO] 2025-08-04 11:15:03,871 - Logging is set up with rotation.
+[INFO] 2025-08-04 11:25:52,251 - Logging is set up with rotation.
+[INFO] 2025-08-04 11:29:19,942 - Logging is set up with rotation.
+[INFO] 2025-08-04 11:30:58,923 - Logging is set up with rotation.
+[INFO] 2025-08-04 11:38:16,277 - Logging is set up with rotation.
+[INFO] 2025-08-04 11:38:22,600 - Logging is set up with rotation.
+[INFO] 2025-08-04 11:40:04,769 - Logging is set up with rotation.
+[INFO] 2025-08-04 11:42:45,444 - Logging is set up with rotation.
+[INFO] 2025-08-04 11:42:53,424 - Logging is set up with rotation.
+[INFO] 2025-08-04 11:49:03,189 - Logging is set up with rotation.
+[INFO] 2025-08-04 11:49:09,719 - Logging is set up with rotation.
+[INFO] 2025-08-04 11:49:31,836 - Logging is set up with rotation.
+[INFO] 2025-08-04 11:49:42,063 - Logging is set up with rotation.
+[INFO] 2025-08-04 19:49:02,724 - Logging is set up with rotation.
+[INFO] 2025-08-04 19:49:27,688 - Logging is set up with rotation.
+[INFO] 2025-08-04 19:49:59,779 - Logging is set up with rotation.
+[INFO] 2025-08-04 19:50:29,667 - Logging is set up with rotation.
+[INFO] 2025-08-04 19:55:26,030 - Logging is set up with rotation.
+[INFO] 2025-08-04 19:56:54,383 - Logging is set up with rotation.
+[INFO] 2025-08-04 19:58:08,627 - Logging is set up with rotation.
+[INFO] 2025-08-04 19:58:45,869 - Logging is set up with rotation.
+[INFO] 2025-08-04 20:00:35,156 - Logging is set up with rotation.
+[INFO] 2025-08-04 20:01:11,370 - Logging is set up with rotation.
+[INFO] 2025-08-04 20:01:27,356 - Logging is set up with rotation.
+[INFO] 2025-08-04 20:01:56,487 - Logging is set up with rotation.
+[INFO] 2025-08-04 20:07:28,818 - Logging is set up with rotation.
+[INFO] 2025-08-04 20:09:55,473 - Logging is set up with rotation.
+[INFO] 2025-08-04 20:51:30,052 - Logging is set up with rotation.
+[INFO] 2025-08-04 20:51:50,798 - Logging is set up with rotation.
+[INFO] 2025-08-05 04:12:37,799 - Logging is set up with rotation.
+[INFO] 2025-08-05 04:17:55,494 - Logging is set up with rotation.
+[INFO] 2025-08-05 04:17:58,688 - Logging is set up with rotation.
+[INFO] 2025-08-05 04:33:56,259 - Logging is set up with rotation.
+[INFO] 2025-08-05 04:34:02,631 - Logging is set up with rotation.
+[INFO] 2025-08-05 04:51:57,628 - Logging is set up with rotation.
+[INFO] 2025-08-05 04:52:10,509 - Logging is set up with rotation.
+[INFO] 2025-08-05 04:52:53,996 - Logging is set up with rotation.
+[INFO] 2025-08-05 04:53:05,948 - Logging is set up with rotation.
+[INFO] 2025-08-05 05:07:23,233 - Logging is set up with rotation.
+[INFO] 2025-08-05 05:07:26,650 - Logging is set up with rotation.
+[INFO] 2025-08-05 06:06:24,589 - Logging is set up with rotation.
+[INFO] 2025-08-05 06:06:31,184 - Logging is set up with rotation.
+[INFO] 2025-08-05 06:11:12,387 - Logging is set up with rotation.
+[INFO] 2025-08-05 06:11:22,911 - Logging is set up with rotation.
+[INFO] 2025-08-05 06:11:48,217 - Logging is set up with rotation.
+[INFO] 2025-08-05 06:12:25,171 - Logging is set up with rotation.
+[INFO] 2025-08-05 06:13:07,322 - Logging is set up with rotation.
+[INFO] 2025-08-05 06:21:29,683 - Logging is set up with rotation.
+[INFO] 2025-08-05 06:28:18,160 - Deleted menu item 1
+[INFO] 2025-08-05 06:29:00,214 - Logging is set up with rotation.
+[INFO] 2025-08-05 06:34:06,264 - Logging is set up with rotation.
+[INFO] 2025-08-05 06:34:25,729 - Logging is set up with rotation.
+[INFO] 2025-08-05 06:35:02,085 - Logging is set up with rotation.
+[INFO] 2025-08-05 06:38:32,117 - Logging is set up with rotation.
+[INFO] 2025-08-05 06:38:52,197 - Logging is set up with rotation.
+[INFO] 2025-08-05 06:41:08,956 - Logging is set up with rotation.
+[INFO] 2025-08-05 06:42:29,242 - Logging is set up with rotation.
+[INFO] 2025-08-05 06:42:40,224 - Logging is set up with rotation.
+[INFO] 2025-08-05 06:47:53,895 - Logging is set up with rotation.
+[INFO] 2025-08-05 06:48:01,723 - Logging is set up with rotation.
+[INFO] 2025-08-05 06:57:05,010 - Logging is set up with rotation.
+[INFO] 2025-08-05 06:57:13,548 - Logging is set up with rotation.
+[INFO] 2025-08-05 07:58:43,003 - Logging is set up with rotation.
+[INFO] 2025-08-05 08:06:48,043 - Logging is set up with rotation.
+[INFO] 2025-08-05 08:06:59,373 - Logging is set up with rotation.
+[INFO] 2025-08-05 08:08:00,439 - Logging is set up with rotation.
+[INFO] 2025-08-05 08:08:29,168 - Set active status to 1 for item 23
+[INFO] 2025-08-05 08:08:54,686 - Set active status to 1 for item 24
+[INFO] 2025-08-05 08:09:41,282 - Set active status to 1 for item 14
+[INFO] 2025-08-05 08:09:49,954 - Set active status to 1 for item 11
+[INFO] 2025-08-05 08:10:24,642 - Logging is set up with rotation.
+[INFO] 2025-08-05 08:14:08,028 - Logging is set up with rotation.
+[INFO] 2025-08-05 08:16:47,906 - Logging is set up with rotation.
+[INFO] 2025-08-05 08:34:29,333 - Logging is set up with rotation.
+[INFO] 2025-08-05 08:51:40,391 - Logging is set up with rotation.
+[INFO] 2025-08-05 08:51:44,546 - Logging is set up with rotation.
+[INFO] 2025-08-05 08:53:24,164 - Logging is set up with rotation.
+[INFO] 2025-08-05 08:54:59,107 - Logging is set up with rotation.
+[INFO] 2025-08-05 08:55:02,731 - Logging is set up with rotation.
+[INFO] 2025-08-05 08:57:53,942 - Logging is set up with rotation.
+[INFO] 2025-08-05 09:05:34,744 - Logging is set up with rotation.
+[INFO] 2025-08-05 09:10:28,013 - Logging is set up with rotation.
+[INFO] 2025-08-05 09:12:40,635 - Logging is set up with rotation.
+[INFO] 2025-08-05 09:17:12,945 - Logging is set up with rotation.
+[INFO] 2025-08-05 09:23:50,852 - Logging is set up with rotation.
+[INFO] 2025-08-05 09:24:38,375 - Logging is set up with rotation.
+[INFO] 2025-08-05 09:24:42,163 - Logging is set up with rotation.
+[INFO] 2025-08-05 09:25:24,271 - Logging is set up with rotation.
+[INFO] 2025-08-05 09:25:48,170 - Logging is set up with rotation.
+[INFO] 2025-08-05 09:27:01,674 - Logging is set up with rotation.
+[INFO] 2025-08-05 09:27:05,399 - Logging is set up with rotation.
+[INFO] 2025-08-05 09:34:11,113 - Logging is set up with rotation.
+[INFO] 2025-08-05 09:36:44,821 - Logging is set up with rotation.
+[INFO] 2025-08-05 09:37:02,476 - Logging is set up with rotation.
+[INFO] 2025-08-05 09:38:24,849 - Logging is set up with rotation.
+[INFO] 2025-08-05 09:40:15,074 - Logging is set up with rotation.
+[INFO] 2025-08-05 09:43:04,749 - Logging is set up with rotation.
+[INFO] 2025-08-05 10:00:51,862 - Logging is set up with rotation.
+[INFO] 2025-08-05 10:06:22,155 - Logging is set up with rotation.
+[INFO] 2025-08-05 10:09:26,184 - Logging is set up with rotation.
+[INFO] 2025-08-05 10:09:32,641 - Logging is set up with rotation.
+[INFO] 2025-08-05 10:10:15,353 - Processing filtered search for: Italian with filters
+[INFO] 2025-08-05 10:10:19,877 - Processing filtered search for: Chinese with filters
+[INFO] 2025-08-05 10:10:26,378 - Processing filtered search for: Mexican with filters
+[INFO] 2025-08-05 10:11:11,318 - Logging is set up with rotation.
+[INFO] 2025-08-05 10:15:03,852 - Processing filtered search for: None with filters
+[INFO] 2025-08-05 10:35:01,837 - Logging is set up with rotation.
+[INFO] 2025-08-05 10:35:09,114 - Logging is set up with rotation.
+[INFO] 2025-08-05 10:35:22,324 - Successful login for user: 1
+[INFO] 2025-08-05 10:35:46,693 - Successful login for user: 4
+[INFO] 2025-08-05 11:01:15,399 - Logging is set up with rotation.
+[INFO] 2025-08-05 11:01:35,722 - Logging is set up with rotation.
+[INFO] 2025-08-05 11:01:52,093 - Logging is set up with rotation.
+[INFO] 2025-08-05 11:02:25,794 - Logging is set up with rotation.
+[INFO] 2025-08-05 11:02:41,481 - Logging is set up with rotation.
+[INFO] 2025-08-05 11:03:21,376 - Logging is set up with rotation.
+[INFO] 2025-08-05 11:06:04,457 - Logging is set up with rotation.
+[INFO] 2025-08-05 11:06:34,763 - Logging is set up with rotation.
+[INFO] 2025-08-05 11:07:03,435 - Logging is set up with rotation.
+[INFO] 2025-08-05 11:07:20,308 - Logging is set up with rotation.
+[INFO] 2025-08-05 11:07:35,917 - Logging is set up with rotation.
+[INFO] 2025-08-05 11:08:23,119 - Logging is set up with rotation.
+[INFO] 2025-08-05 11:08:45,527 - Logging is set up with rotation.
+[INFO] 2025-08-05 17:30:33,376 - Logging is set up with rotation.
+[INFO] 2025-08-05 17:30:38,092 - Logging is set up with rotation.
+[INFO] 2025-08-05 17:42:47,190 - Processing filtered search for: curry with filters
+[INFO] 2025-08-05 17:43:44,289 - Processing filtered search for: curry with filters
+[INFO] 2025-08-05 18:17:47,096 - Logging is set up with rotation.
+[INFO] 2025-08-05 18:17:56,003 - Logging is set up with rotation.
+[INFO] 2025-08-05 18:18:28,816 - Successful login for user: 1
+[INFO] 2025-08-05 18:19:01,206 - Successful login for user: 4
+[INFO] 2025-08-05 18:55:12,830 - Logging is set up with rotation.
+[INFO] 2025-08-05 18:55:37,726 - Logging is set up with rotation.
+[INFO] 2025-08-05 18:56:04,811 - Logging is set up with rotation.
+[INFO] 2025-08-05 18:56:36,242 - Logging is set up with rotation.
+[INFO] 2025-08-05 18:57:00,486 - Logging is set up with rotation.
+[INFO] 2025-08-05 18:58:26,267 - Logging is set up with rotation.
+[INFO] 2025-08-05 18:58:43,313 - Logging is set up with rotation.
+[INFO] 2025-08-05 18:59:11,743 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:00:21,147 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:00:37,365 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:00:57,140 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:02:08,101 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:02:46,687 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:03:16,292 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:04:04,301 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:10:27,509 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:12:38,986 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:13:51,056 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:13:58,973 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:17:23,352 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:20:36,674 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:20:58,847 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:21:15,976 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:22:03,282 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:22:24,517 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:22:37,045 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:23:50,608 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:26:28,104 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:27:09,770 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:27:32,342 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:27:50,706 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:29:15,299 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:30:15,691 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:32:13,461 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:33:23,888 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:34:08,870 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:34:33,555 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:35:12,484 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:35:33,647 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:36:03,155 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:36:12,657 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:36:46,558 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:36:57,651 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:37:19,527 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:37:48,769 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:40:51,561 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:48:13,499 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:49:47,247 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:51:03,194 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:51:25,348 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:52:34,580 - Logging is set up with rotation.
+[INFO] 2025-08-05 19:57:16,090 - Processing filtered search for: Italian with filters
+[INFO] 2025-08-05 19:57:29,995 - Processing filtered search for: Chinese with filters
+[INFO] 2025-08-05 20:03:22,922 - Logging is set up with rotation.
+[INFO] 2025-08-05 20:04:28,568 - Logging is set up with rotation.
+[INFO] 2025-08-05 20:05:54,126 - Logging is set up with rotation.
+[INFO] 2025-08-05 20:11:44,493 - Logging is set up with rotation.
+[INFO] 2025-08-05 20:12:24,032 - Logging is set up with rotation.
+[INFO] 2025-08-05 20:12:32,392 - Logging is set up with rotation.
+[INFO] 2025-08-05 20:13:01,616 - Logging is set up with rotation.
+[INFO] 2025-08-05 20:13:20,173 - Logging is set up with rotation.
+[INFO] 2025-08-05 20:13:37,090 - Logging is set up with rotation.
+[INFO] 2025-08-05 20:13:56,232 - Logging is set up with rotation.
+[INFO] 2025-08-05 20:14:12,661 - Logging is set up with rotation.
+[INFO] 2025-08-05 20:22:03,301 - Logging is set up with rotation.
+[INFO] 2025-08-05 20:22:06,189 - Logging is set up with rotation.
+[INFO] 2025-08-05 20:22:36,968 - Processing filtered search for: Italian with filters
+[INFO] 2025-08-05 20:23:04,286 - Logging is set up with rotation.
+[INFO] 2025-08-05 20:24:23,957 - Logging is set up with rotation.
+[INFO] 2025-08-05 20:25:22,129 - Logging is set up with rotation.
+[INFO] 2025-08-05 20:25:25,415 - Logging is set up with rotation.
+[INFO] 2025-08-05 20:26:10,609 - Logging is set up with rotation.
+[INFO] 2025-08-05 20:26:55,173 - Logging is set up with rotation.
+[INFO] 2025-08-05 20:27:45,842 - Logging is set up with rotation.
+[INFO] 2025-08-05 20:28:55,183 - Logging is set up with rotation.
+[INFO] 2025-08-05 20:29:17,241 - Logging is set up with rotation.
+[INFO] 2025-08-05 20:36:00,103 - Logging is set up with rotation.
+[INFO] 2025-08-05 20:37:51,854 - Logging is set up with rotation.
+[INFO] 2025-08-05 20:38:34,143 - Logging is set up with rotation.
+[INFO] 2025-08-05 20:38:59,205 - Logging is set up with rotation.
+[INFO] 2025-08-05 20:40:04,757 - Logging is set up with rotation.
+[INFO] 2025-08-05 20:40:39,038 - Logging is set up with rotation.
+[INFO] 2025-08-05 20:40:45,137 - Logging is set up with rotation.
+[INFO] 2025-08-05 20:44:17,461 - Logging is set up with rotation.
+[INFO] 2025-08-05 20:44:38,464 - Logging is set up with rotation.
+[INFO] 2025-08-05 20:44:59,125 - Logging is set up with rotation.
+[INFO] 2025-08-05 20:45:14,468 - Logging is set up with rotation.
+[INFO] 2025-08-05 20:45:47,256 - Logging is set up with rotation.
+[INFO] 2025-08-05 20:47:50,987 - Logging is set up with rotation.
+[INFO] 2025-08-05 20:50:06,052 - Successful login for user: 3
+[INFO] 2025-08-05 20:51:12,083 - Logging is set up with rotation.
+[INFO] 2025-08-05 20:53:56,893 - Set active status to 1 for item 16
+[INFO] 2025-08-06 04:19:07,324 - Logging is set up with rotation.
+[INFO] 2025-08-06 04:19:36,357 - Logging is set up with rotation.
+[INFO] 2025-08-06 04:19:55,836 - Logging is set up with rotation.
+[INFO] 2025-08-06 04:20:24,657 - Logging is set up with rotation.
+[INFO] 2025-08-06 04:21:22,049 - Logging is set up with rotation.
+[INFO] 2025-08-06 04:21:56,103 - Logging is set up with rotation.
+[INFO] 2025-08-06 04:22:20,088 - Logging is set up with rotation.
+[INFO] 2025-08-06 04:22:37,817 - Logging is set up with rotation.
+[INFO] 2025-08-06 04:22:53,797 - Logging is set up with rotation.
+[INFO] 2025-08-06 04:23:19,278 - Logging is set up with rotation.
+[INFO] 2025-08-06 04:36:43,122 - Logging is set up with rotation.
+[INFO] 2025-08-06 04:37:06,343 - Logging is set up with rotation.
+[INFO] 2025-08-06 04:38:23,913 - Successful login for user: 4
+[INFO] 2025-08-06 04:38:35,505 - Set active status to 1 for item 1
+[INFO] 2025-08-06 04:38:42,980 - Set active status to 1 for item 3
+[INFO] 2025-08-06 04:38:48,200 - Set active status to 1 for item 4
+[INFO] 2025-08-06 04:39:58,531 - Set active status to 1 for item 16
+[INFO] 2025-08-06 04:42:00,825 - Logging is set up with rotation.
+[INFO] 2025-08-06 04:45:53,966 - Logging is set up with rotation.
+[INFO] 2025-08-06 04:46:18,851 - Logging is set up with rotation.
+[INFO] 2025-08-06 04:46:36,505 - Logging is set up with rotation.
+[INFO] 2025-08-06 04:51:42,058 - Removed item 1 from cart 1
+[INFO] 2025-08-06 04:51:47,271 - Removed item 2 from cart 1
+[INFO] 2025-08-06 04:51:47,277 - Deleted empty cart 1
+[INFO] 2025-08-06 04:51:51,503 - Created new cart 1 for user 1
+[INFO] 2025-08-06 04:51:51,505 - Added new item 3 to cart 1
+[INFO] 2025-08-06 04:51:56,196 - Order 3 placed for user 1, total: 14.96
+[INFO] 2025-08-06 04:52:14,297 - Created new cart 1 for user 1
+[INFO] 2025-08-06 04:52:14,301 - Added new item 3 to cart 1
+[INFO] 2025-08-06 04:52:19,111 - Order 4 placed for user 1, total: 14.96
+[INFO] 2025-08-06 04:52:40,601 - Updated order 4 status to delivered
+[INFO] 2025-08-06 04:52:48,348 - Updated order 3 status to delivered
+[INFO] 2025-08-06 04:54:38,334 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:05:15,290 - Processing filtered search for: Thai with filters
+[INFO] 2025-08-06 05:05:26,518 - Processing filtered search for: Mexican with filters
+[INFO] 2025-08-06 05:05:31,238 - Processing filtered search for: Indian with filters
+[INFO] 2025-08-06 05:05:34,452 - Processing filtered search for: Italian with filters
+[INFO] 2025-08-06 05:22:48,462 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:48,971 - Successful login for user: 1
+[INFO] 2025-08-06 05:22:49,088 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:49,088 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:49,238 - Successful login for user: 1
+[INFO] 2025-08-06 05:22:49,238 - Successful login for user: 1
+[INFO] 2025-08-06 05:22:49,335 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:49,335 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:49,335 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:49,580 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:49,580 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:49,580 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:49,580 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:49,669 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:49,669 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:49,669 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:49,669 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:49,669 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:49,883 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:49,883 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:49,883 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:49,883 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:49,883 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:49,883 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,099 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,099 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,099 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,099 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,099 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,099 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,099 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,265 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,265 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,265 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,265 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,265 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,265 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,265 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,265 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,499 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,499 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,499 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,499 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,499 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,499 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,499 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,499 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,499 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,678 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,678 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,678 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,678 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,678 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,678 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,678 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,678 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,678 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,678 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,938 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,938 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,938 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,938 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,938 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,938 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,938 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,938 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,938 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,938 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:50,938 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:51,031 - Created new restaurant 1
+[INFO] 2025-08-06 05:22:51,031 - Created new restaurant 1
+[INFO] 2025-08-06 05:22:51,031 - Created new restaurant 1
+[INFO] 2025-08-06 05:22:51,031 - Created new restaurant 1
+[INFO] 2025-08-06 05:22:51,031 - Created new restaurant 1
+[INFO] 2025-08-06 05:22:51,031 - Created new restaurant 1
+[INFO] 2025-08-06 05:22:51,031 - Created new restaurant 1
+[INFO] 2025-08-06 05:22:51,031 - Created new restaurant 1
+[INFO] 2025-08-06 05:22:51,031 - Created new restaurant 1
+[INFO] 2025-08-06 05:22:51,031 - Created new restaurant 1
+[INFO] 2025-08-06 05:22:51,031 - Created new restaurant 1
+[INFO] 2025-08-06 05:22:51,153 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:51,153 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:51,153 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:51,153 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:51,153 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:51,153 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:51,153 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:51,153 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:51,153 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:51,153 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:51,153 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:51,153 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:22:51,248 - Updated details for restaurant 1
+[INFO] 2025-08-06 05:22:51,248 - Updated details for restaurant 1
+[INFO] 2025-08-06 05:22:51,248 - Updated details for restaurant 1
+[INFO] 2025-08-06 05:22:51,248 - Updated details for restaurant 1
+[INFO] 2025-08-06 05:22:51,248 - Updated details for restaurant 1
+[INFO] 2025-08-06 05:22:51,248 - Updated details for restaurant 1
+[INFO] 2025-08-06 05:22:51,248 - Updated details for restaurant 1
+[INFO] 2025-08-06 05:22:51,248 - Updated details for restaurant 1
+[INFO] 2025-08-06 05:22:51,248 - Updated details for restaurant 1
+[INFO] 2025-08-06 05:22:51,248 - Updated details for restaurant 1
+[INFO] 2025-08-06 05:22:51,248 - Updated details for restaurant 1
+[INFO] 2025-08-06 05:22:51,248 - Updated details for restaurant 1
+[INFO] 2025-08-06 05:25:13,073 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:25:13,372 - Successful login for user: 1
+[INFO] 2025-08-06 05:25:13,516 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:25:13,516 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:25:13,667 - Successful login for user: 1
+[INFO] 2025-08-06 05:25:13,667 - Successful login for user: 1
+[INFO] 2025-08-06 05:25:13,763 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:25:13,763 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:25:13,763 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:25:13,991 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:25:13,991 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:25:13,991 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:25:13,991 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:25:14,089 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:25:14,089 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:25:14,089 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:25:14,089 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:25:14,089 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:25:14,307 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:25:14,307 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:25:14,307 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:25:14,307 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:25:14,307 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:25:14,307 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:25:14,511 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:25:14,511 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:25:14,511 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:25:14,511 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:25:14,511 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:25:14,511 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:25:14,511 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:26:08,171 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:26:40,930 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:26:41,153 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:26:41,153 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:26:41,408 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:26:41,408 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:26:41,408 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:26:41,496 - Created new restaurant 1
+[INFO] 2025-08-06 05:26:41,496 - Created new restaurant 1
+[INFO] 2025-08-06 05:26:41,496 - Created new restaurant 1
+[INFO] 2025-08-06 05:26:41,612 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:26:41,612 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:26:41,612 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:26:41,612 - Logging is set up with rotation.
+[INFO] 2025-08-06 05:26:41,698 - Updated details for restaurant 1
+[INFO] 2025-08-06 05:26:41,698 - Updated details for restaurant 1
+[INFO] 2025-08-06 05:26:41,698 - Updated details for restaurant 1
+[INFO] 2025-08-06 05:26:41,698 - Updated details for restaurant 1
+[INFO] 2025-08-06 09:18:20,079 - Logging is set up with rotation.
+[INFO] 2025-08-06 09:18:23,090 - Logging is set up with rotation.
+[INFO] 2025-08-06 09:18:36,893 - Successful login for user: 1
+[INFO] 2025-08-06 09:42:54,156 - Logging is set up with rotation.
+[INFO] 2025-08-06 10:22:00,327 - Logging is set up with rotation.
+[INFO] 2025-08-06 10:24:07,840 - Logging is set up with rotation.
+[INFO] 2025-08-06 10:38:51,637 - Logging is set up with rotation.
+[INFO] 2025-08-06 10:55:02,153 - Logging is set up with rotation.
+[INFO] 2025-08-07 06:05:50,714 - Logging is set up with rotation.
+[INFO] 2025-08-07 06:05:57,066 - Logging is set up with rotation.
+[INFO] 2025-08-07 06:07:57,731 - Logging is set up with rotation.
+[INFO] 2025-08-07 06:09:19,247 - Logging is set up with rotation.
+[INFO] 2025-08-07 06:09:34,460 - Logging is set up with rotation.
+[INFO] 2025-08-07 06:10:36,322 - Logging is set up with rotation.
+[INFO] 2025-08-07 06:10:45,080 - Logging is set up with rotation.
+[INFO] 2025-08-07 06:14:36,223 - Logging is set up with rotation.
+[INFO] 2025-08-07 06:15:24,644 - Logging is set up with rotation.
+[INFO] 2025-08-07 06:15:51,290 - Logging is set up with rotation.
+[INFO] 2025-08-07 06:16:20,335 - Logging is set up with rotation.
+[INFO] 2025-08-07 06:16:38,424 - Logging is set up with rotation.
+[INFO] 2025-08-07 06:16:53,085 - Logging is set up with rotation.
+[INFO] 2025-08-07 06:16:59,340 - Logging is set up with rotation.
+[INFO] 2025-08-07 06:17:10,668 - Successful login for user: 1
+[INFO] 2025-08-07 06:17:57,984 - Successful login for user: 4
+[INFO] 2025-08-07 06:19:28,089 - Set special status to 1 for item 11
+[INFO] 2025-08-07 06:19:34,812 - Set special status to 1 for item 14
+[INFO] 2025-08-07 12:44:56,474 - Successful login for user: 1
+[INFO] 2025-08-07 12:45:11,603 - Processing filtered search for: None with filters
+[INFO] 2025-08-07 12:46:03,614 - Order 3 placed for user 1, total: 42.56
+[INFO] 2025-08-07 14:36:56,595 - Password updated for user: 1
+[INFO] 2025-08-07 14:37:16,103 - Successful login for user: 1
+[INFO] 2025-08-07 16:47:01,794 - Successful login for user: 1
+[INFO] 2025-08-07 16:51:43,431 - Set active status to 1 for item 23
+[INFO] 2025-08-07 16:52:09,757 - Set active status to 1 for item 14
+[INFO] 2025-08-07 16:52:17,873 - Set active status to 1 for item 15
+[INFO] 2025-08-07 16:52:51,417 - Set active status to 1 for item 3
+[INFO] 2025-08-07 16:54:34,751 - Successful login for user: 3
+[INFO] 2025-08-07 16:54:54,399 - Set active status to 1 for item 18
+[INFO] 2025-08-07 16:55:15,974 - Set active status to 1 for item 6
+[INFO] 2025-08-08 03:18:15,105 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:15,685 - Successful login for user: 1
+[INFO] 2025-08-08 03:18:16,018 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:16,018 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:16,164 - Successful login for user: 1
+[INFO] 2025-08-08 03:18:16,164 - Successful login for user: 1
+[INFO] 2025-08-08 03:18:16,309 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:16,309 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:16,309 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:16,594 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:16,594 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:16,594 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:16,594 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:16,692 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:16,692 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:16,692 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:16,692 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:16,692 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:16,929 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:16,929 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:16,929 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:16,929 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:16,929 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:16,929 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:17,154 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:17,154 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:17,154 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:17,154 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:17,154 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:17,154 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:17,154 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:17,332 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:17,332 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:17,332 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:17,332 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:17,332 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:17,332 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:17,332 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:17,332 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:17,709 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:17,709 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:17,709 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:17,709 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:17,709 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:17,709 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:17,709 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:17,709 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:17,709 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:17,885 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:17,885 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:17,885 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:17,885 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:17,885 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:17,885 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:17,885 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:17,885 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:17,885 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:17,885 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:18,143 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:18,143 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:18,143 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:18,143 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:18,143 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:18,143 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:18,143 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:18,143 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:18,143 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:18,143 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:18,143 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:18,236 - Created new restaurant 1
+[INFO] 2025-08-08 03:18:18,236 - Created new restaurant 1
+[INFO] 2025-08-08 03:18:18,236 - Created new restaurant 1
+[INFO] 2025-08-08 03:18:18,236 - Created new restaurant 1
+[INFO] 2025-08-08 03:18:18,236 - Created new restaurant 1
+[INFO] 2025-08-08 03:18:18,236 - Created new restaurant 1
+[INFO] 2025-08-08 03:18:18,236 - Created new restaurant 1
+[INFO] 2025-08-08 03:18:18,236 - Created new restaurant 1
+[INFO] 2025-08-08 03:18:18,236 - Created new restaurant 1
+[INFO] 2025-08-08 03:18:18,236 - Created new restaurant 1
+[INFO] 2025-08-08 03:18:18,236 - Created new restaurant 1
+[INFO] 2025-08-08 03:18:18,392 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:18,392 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:18,392 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:18,392 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:18,392 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:18,392 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:18,392 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:18,392 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:18,392 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:18,392 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:18,392 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:18,392 - Logging is set up with rotation.
+[INFO] 2025-08-08 03:18:18,480 - Updated details for restaurant 1
+[INFO] 2025-08-08 03:18:18,480 - Updated details for restaurant 1
+[INFO] 2025-08-08 03:18:18,480 - Updated details for restaurant 1
+[INFO] 2025-08-08 03:18:18,480 - Updated details for restaurant 1
+[INFO] 2025-08-08 03:18:18,480 - Updated details for restaurant 1
+[INFO] 2025-08-08 03:18:18,480 - Updated details for restaurant 1
+[INFO] 2025-08-08 03:18:18,480 - Updated details for restaurant 1
+[INFO] 2025-08-08 03:18:18,480 - Updated details for restaurant 1
+[INFO] 2025-08-08 03:18:18,480 - Updated details for restaurant 1
+[INFO] 2025-08-08 03:18:18,480 - Updated details for restaurant 1
+[INFO] 2025-08-08 03:18:18,480 - Updated details for restaurant 1
+[INFO] 2025-08-08 03:18:18,480 - Updated details for restaurant 1
+[INFO] 2025-08-08 07:02:16,536 - Logging is set up with rotation.
+[INFO] 2025-08-08 07:02:35,488 - Logging is set up with rotation.
+[INFO] 2025-08-08 07:02:51,792 - Logging is set up with rotation.
+[INFO] 2025-08-08 07:03:36,905 - Logging is set up with rotation.
+[INFO] 2025-08-08 07:03:48,030 - Logging is set up with rotation.
+[INFO] 2025-08-08 07:04:29,757 - Logging is set up with rotation.
+[INFO] 2025-08-08 07:05:19,087 - Logging is set up with rotation.
+[INFO] 2025-08-08 07:05:49,900 - Logging is set up with rotation.
+[INFO] 2025-08-08 07:06:45,469 - Logging is set up with rotation.
+[INFO] 2025-08-08 07:07:14,424 - Logging is set up with rotation.
+[INFO] 2025-08-08 07:07:23,939 - Logging is set up with rotation.
+[INFO] 2025-08-08 07:09:10,901 - Logging is set up with rotation.
+[INFO] 2025-08-08 07:09:34,047 - Logging is set up with rotation.
+[INFO] 2025-08-08 07:10:01,727 - Logging is set up with rotation.
+[INFO] 2025-08-08 07:10:19,319 - Logging is set up with rotation.
+[INFO] 2025-08-08 07:13:07,133 - Logging is set up with rotation.
+[INFO] 2025-08-08 07:13:17,660 - Logging is set up with rotation.
+[INFO] 2025-08-08 07:13:28,198 - Logging is set up with rotation.
+[INFO] 2025-08-08 07:13:40,368 - Logging is set up with rotation.
+[INFO] 2025-08-08 07:15:15,092 - Logging is set up with rotation.
+[INFO] 2025-08-08 07:16:02,469 - Successful login for user: 4
+[INFO] 2025-08-08 07:17:04,516 - Processing filtered search for: None with filters
+[INFO] 2025-08-08 07:17:38,953 - Processing filtered search for: None with filters
+[INFO] 2025-08-08 07:17:59,106 - Processing filtered search for: None with filters
+[INFO] 2025-08-08 07:18:55,964 - Successful login for user: 3
+[INFO] 2025-08-08 07:19:19,002 - Updated 3 cuisines for restaurant 4
+[INFO] 2025-08-08 07:20:41,752 - Updated 4 cuisines for restaurant 2
+[INFO] 2025-08-08 07:21:08,909 - Successful login for user: 4
+[INFO] 2025-08-08 07:22:12,298 - Updated 4 cuisines for restaurant 5
+[INFO] 2025-08-08 07:23:08,431 - Updated 4 cuisines for restaurant 3
+[INFO] 2025-08-08 07:24:13,338 - Created new cart 1 for user 1
+[INFO] 2025-08-08 07:24:13,345 - Added new item 25 to cart 1
+[INFO] 2025-08-08 07:24:19,611 - Order 4 placed for user 1, total: 16.73
+[INFO] 2025-08-08 07:24:28,233 - Created new cart 1 for user 1
+[INFO] 2025-08-08 07:24:28,242 - Added new item 25 to cart 1
+[INFO] 2025-08-08 07:24:32,061 - Order 5 placed for user 1, total: 16.73
+[INFO] 2025-08-08 07:24:44,331 - Updated order 5 status to delivered
+[INFO] 2025-08-08 07:24:49,927 - Updated order 4 status to delivered
+[INFO] 2025-08-08 07:50:24,694 - Successful login for user: 1
+[INFO] 2025-08-08 07:51:23,613 - Processing filtered search for: Italian with filters
+[INFO] 2025-08-08 07:51:34,333 - Processing filtered search for: Chinese with filters
+[INFO] 2025-08-08 07:51:38,729 - Processing filtered search for: Indian with filters
+[INFO] 2025-08-08 07:51:42,305 - Processing filtered search for: Mexican with filters
+[INFO] 2025-08-08 07:51:46,797 - Processing filtered search for: Thai with filters
+[INFO] 2025-08-08 07:52:48,249 - Created new cart 1 for user 1
+[INFO] 2025-08-08 07:52:48,259 - Added new item 21 to cart 1
+[INFO] 2025-08-08 07:53:23,749 - Added 1 item ratings and restaurant rating for order 5
+[INFO] 2025-08-08 07:54:42,516 - Updated profile for user: 1
+[INFO] 2025-08-08 07:55:28,123 - Password updated for user: 1
+[INFO] 2025-08-08 07:55:46,380 - Successful login for user: 1
+[INFO] 2025-08-08 07:58:10,945 - Updated profile for user: 4
+[INFO] 2025-08-08 07:58:57,273 - Processing filtered search for: None with filters
+[INFO] 2025-08-08 07:59:41,853 - Processing filtered search for: None with filters
+[WARNING] 2025-08-08 08:00:03,028 - Cart restaurant mismatch for user 1. Expected 3, found 5
+[WARNING] 2025-08-08 08:00:13,291 - Cart restaurant mismatch for user 1. Expected 3, found 5
+[INFO] 2025-08-08 08:00:44,543 - Processing filtered search for: thai with filters
+[INFO] 2025-08-08 08:01:01,073 - Processing filtered search for: curry corner with filters
+[INFO] 2025-08-08 08:02:08,144 - Processing filtered search for: curry corner with filters
+[INFO] 2025-08-08 08:02:25,943 - Processing filtered search for: coffee with filters
+[INFO] 2025-08-08 08:03:07,093 - Order 6 placed for user 1, total: 17.87
+[INFO] 2025-08-08 08:03:34,659 - Updated order 6 status to delivered
+[INFO] 2025-08-08 08:04:01,352 - Added 1 item ratings and restaurant rating for order 6
+[INFO] 2025-08-08 08:08:56,017 - Updated menu item 21
+[INFO] 2025-08-08 08:09:23,403 - Deleted menu item 21
+[INFO] 2025-08-08 08:09:54,743 - Created menu item 26
+[INFO] 2025-08-08 08:10:18,323 - Updated menu item 26
+[INFO] 2025-08-08 08:12:21,671 - Set special status to 1 for item 22
+[INFO] 2025-08-08 08:12:45,189 - Created new cart 1 for user 1
+[INFO] 2025-08-08 08:12:45,196 - Added new item 24 to cart 1
+[INFO] 2025-08-08 08:12:57,061 - Order 7 placed for user 1, total: 11.41
+[INFO] 2025-08-08 08:13:04,997 - Created new cart 1 for user 1
+[INFO] 2025-08-08 08:13:05,004 - Added new item 24 to cart 1
+[INFO] 2025-08-08 08:13:08,848 - Order 8 placed for user 1, total: 11.41
+[INFO] 2025-08-08 08:13:24,632 - Updated order 8 status to delivered
+[INFO] 2025-08-08 08:18:05,815 - Set active status to 0 for item 22
+[INFO] 2025-08-08 08:38:18,593 - Successful login for user: 1
+[INFO] 2025-08-08 08:48:17,475 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:19,010 - Successful login for user: 1
+[INFO] 2025-08-08 08:48:19,746 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:19,746 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:20,265 - Successful login for user: 1
+[INFO] 2025-08-08 08:48:20,265 - Successful login for user: 1
+[INFO] 2025-08-08 08:48:20,677 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:20,677 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:20,677 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:21,592 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:21,592 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:21,592 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:21,592 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:21,879 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:21,879 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:21,879 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:21,879 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:21,879 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:22,683 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:22,683 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:22,683 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:22,683 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:22,683 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:22,683 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:23,294 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:23,294 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:23,294 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:23,294 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:23,294 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:23,294 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:23,294 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:23,850 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:23,850 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:23,850 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:23,850 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:23,850 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:23,850 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:23,850 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:23,850 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:24,942 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:24,942 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:24,942 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:24,942 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:24,942 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:24,942 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:24,942 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:24,942 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:24,942 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:25,659 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:25,659 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:25,659 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:25,659 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:25,659 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:25,659 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:25,659 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:25,659 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:25,659 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:25,659 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:26,522 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:26,522 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:26,522 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:26,522 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:26,522 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:26,522 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:26,522 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:26,522 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:26,522 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:26,522 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:26,522 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:26,860 - Created new restaurant 1
+[INFO] 2025-08-08 08:48:26,860 - Created new restaurant 1
+[INFO] 2025-08-08 08:48:26,860 - Created new restaurant 1
+[INFO] 2025-08-08 08:48:26,860 - Created new restaurant 1
+[INFO] 2025-08-08 08:48:26,860 - Created new restaurant 1
+[INFO] 2025-08-08 08:48:26,860 - Created new restaurant 1
+[INFO] 2025-08-08 08:48:26,860 - Created new restaurant 1
+[INFO] 2025-08-08 08:48:26,860 - Created new restaurant 1
+[INFO] 2025-08-08 08:48:26,860 - Created new restaurant 1
+[INFO] 2025-08-08 08:48:26,860 - Created new restaurant 1
+[INFO] 2025-08-08 08:48:26,860 - Created new restaurant 1
+[INFO] 2025-08-08 08:48:27,303 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:27,303 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:27,303 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:27,303 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:27,303 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:27,303 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:27,303 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:27,303 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:27,303 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:27,303 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:27,303 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:27,303 - Logging is set up with rotation.
+[INFO] 2025-08-08 08:48:27,567 - Updated details for restaurant 1
+[INFO] 2025-08-08 08:48:27,567 - Updated details for restaurant 1
+[INFO] 2025-08-08 08:48:27,567 - Updated details for restaurant 1
+[INFO] 2025-08-08 08:48:27,567 - Updated details for restaurant 1
+[INFO] 2025-08-08 08:48:27,567 - Updated details for restaurant 1
+[INFO] 2025-08-08 08:48:27,567 - Updated details for restaurant 1
+[INFO] 2025-08-08 08:48:27,567 - Updated details for restaurant 1
+[INFO] 2025-08-08 08:48:27,567 - Updated details for restaurant 1
+[INFO] 2025-08-08 08:48:27,567 - Updated details for restaurant 1
+[INFO] 2025-08-08 08:48:27,567 - Updated details for restaurant 1
+[INFO] 2025-08-08 08:48:27,567 - Updated details for restaurant 1
+[INFO] 2025-08-08 08:48:27,567 - Updated details for restaurant 1
+[INFO] 2025-08-08 09:31:38,430 - Logging is set up with rotation.
+[INFO] 2025-08-08 09:31:47,549 - Logging is set up with rotation.
+[INFO] 2025-08-08 09:32:57,292 - Successful login for user: 1
+[INFO] 2025-08-08 09:34:13,826 - Password updated for user: 1
+[INFO] 2025-08-08 09:34:41,831 - Successful login for user: 1
+[INFO] 2025-08-08 09:35:18,356 - Updated profile for user: 1
+[INFO] 2025-08-08 09:36:08,592 - Processing filtered search for: curry corner with filters
+[INFO] 2025-08-08 09:36:33,117 - Processing filtered search for: None with filters
+[INFO] 2025-08-08 09:37:23,858 - Processing filtered search for: None with filters
+[INFO] 2025-08-08 09:38:33,548 - Processing filtered search for: Italian with filters
+[INFO] 2025-08-08 09:39:38,477 - Created new cart 1 for user 1
+[INFO] 2025-08-08 09:39:38,485 - Added new item 23 to cart 1
+[INFO] 2025-08-08 09:39:59,265 - Order 9 placed for user 1, total: 11.69
+[INFO] 2025-08-08 09:42:12,380 - Successful login for user: 4
+[INFO] 2025-08-08 09:43:10,907 - Updated order 9 status to delivered
+[INFO] 2025-08-08 09:45:54,310 - Added 1 item ratings and restaurant rating for order 9
+[INFO] 2025-08-08 09:51:19,130 - Updated menu item 22
+[INFO] 2025-08-08 09:52:32,210 - Set special status to 0 for item 22
+[INFO] 2025-08-08 09:52:38,230 - Set special status to 1 for item 23
+[INFO] 2025-08-08 09:53:49,796 - Created new cart 1 for user 1
+[INFO] 2025-08-08 09:53:49,800 - Added new item 16 to cart 1
+[INFO] 2025-08-08 09:53:54,462 - Order 10 placed for user 1, total: 15.13
+[INFO] 2025-08-08 09:54:03,285 - Created new cart 1 for user 1
+[INFO] 2025-08-08 09:54:03,290 - Added new item 16 to cart 1
+[INFO] 2025-08-08 09:54:08,022 - Order 11 placed for user 1, total: 15.13
+[INFO] 2025-08-08 09:54:36,508 - Successful login for user: 3
+[INFO] 2025-08-08 09:54:53,173 - Updated order 11 status to delivered
+[INFO] 2025-08-08 09:54:58,583 - Updated order 10 status to delivered
+[INFO] 2025-08-08 10:04:46,707 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:47,425 - Successful login for user: 1
+[INFO] 2025-08-08 10:04:47,785 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:47,785 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:47,983 - Successful login for user: 1
+[INFO] 2025-08-08 10:04:47,983 - Successful login for user: 1
+[INFO] 2025-08-08 10:04:48,148 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:48,148 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:48,148 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:48,504 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:48,504 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:48,504 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:48,504 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:48,621 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:48,621 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:48,621 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:48,621 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:48,621 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:48,926 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:48,926 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:48,926 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:48,926 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:48,926 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:48,926 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:49,162 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:49,162 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:49,162 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:49,162 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:49,162 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:49,162 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:49,162 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:49,354 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:49,354 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:49,354 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:49,354 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:49,354 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:49,354 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:49,354 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:49,354 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:49,769 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:49,769 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:49,769 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:49,769 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:49,769 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:49,769 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:49,769 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:49,769 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:49,769 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:50,051 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:50,051 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:50,051 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:50,051 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:50,051 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:50,051 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:50,051 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:50,051 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:50,051 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:50,051 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:50,357 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:50,357 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:50,357 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:50,357 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:50,357 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:50,357 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:50,357 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:50,357 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:50,357 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:50,357 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:50,357 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:50,474 - Created new restaurant 1
+[INFO] 2025-08-08 10:04:50,474 - Created new restaurant 1
+[INFO] 2025-08-08 10:04:50,474 - Created new restaurant 1
+[INFO] 2025-08-08 10:04:50,474 - Created new restaurant 1
+[INFO] 2025-08-08 10:04:50,474 - Created new restaurant 1
+[INFO] 2025-08-08 10:04:50,474 - Created new restaurant 1
+[INFO] 2025-08-08 10:04:50,474 - Created new restaurant 1
+[INFO] 2025-08-08 10:04:50,474 - Created new restaurant 1
+[INFO] 2025-08-08 10:04:50,474 - Created new restaurant 1
+[INFO] 2025-08-08 10:04:50,474 - Created new restaurant 1
+[INFO] 2025-08-08 10:04:50,474 - Created new restaurant 1
+[INFO] 2025-08-08 10:04:50,654 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:50,654 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:50,654 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:50,654 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:50,654 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:50,654 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:50,654 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:50,654 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:50,654 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:50,654 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:50,654 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:50,654 - Logging is set up with rotation.
+[INFO] 2025-08-08 10:04:50,758 - Updated details for restaurant 1
+[INFO] 2025-08-08 10:04:50,758 - Updated details for restaurant 1
+[INFO] 2025-08-08 10:04:50,758 - Updated details for restaurant 1
+[INFO] 2025-08-08 10:04:50,758 - Updated details for restaurant 1
+[INFO] 2025-08-08 10:04:50,758 - Updated details for restaurant 1
+[INFO] 2025-08-08 10:04:50,758 - Updated details for restaurant 1
+[INFO] 2025-08-08 10:04:50,758 - Updated details for restaurant 1
+[INFO] 2025-08-08 10:04:50,758 - Updated details for restaurant 1
+[INFO] 2025-08-08 10:04:50,758 - Updated details for restaurant 1
+[INFO] 2025-08-08 10:04:50,758 - Updated details for restaurant 1
+[INFO] 2025-08-08 10:04:50,758 - Updated details for restaurant 1
+[INFO] 2025-08-08 10:04:50,758 - Updated details for restaurant 1

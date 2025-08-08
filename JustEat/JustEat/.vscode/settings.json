@@ -1,0 +1,13 @@
+{
+    "files.exclude": {
+        "**/__pycache__": false,
+        "**/*.pyc": false,
+        "**/venv": false
+        },
+    "files.watcherExclude": {
+    "**/venv/**": false
+    },
+    "python.terminal.activateEnvironment": true,
+    "terminal.integrated.defaultProfile.windows": "Ubuntu (WSL)",
+    "remote.WSL.useShellEnvironment": true
+}

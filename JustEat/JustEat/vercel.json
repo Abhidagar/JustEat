@@ -4,7 +4,10 @@
         {
             "src": "app.py",
             "use": "@vercel/python",
-            "config": { "maxLambdaSize": "15mb" }
+            "config": { 
+                "maxLambdaSize": "15mb",
+                "runtime": "python3.9"
+            }
         }
     ],
     "routes": [
@@ -14,10 +17,11 @@
         },
         {
             "src": "/(.*)",
-            "dest": "app.py"
+            "dest": "/app.py"
         }
     ],
     "env": {
-        "PYTHONPATH": "."
+        "PYTHONPATH": ".",
+        "FLASK_ENV": "production"
     }
 }

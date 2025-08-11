@@ -2,12 +2,8 @@
     "version": 2,
     "builds": [
         {
-            "src": "app.py",
-            "use": "@vercel/python",
-            "config": { 
-                "maxLambdaSize": "15mb",
-                "runtime": "python3.9"
-            }
+            "src": "api/index.py",
+            "use": "@vercel/python"
         }
     ],
     "routes": [
@@ -17,11 +13,10 @@
         },
         {
             "src": "/(.*)",
-            "dest": "/app.py"
+            "dest": "/api/index.py"
         }
     ],
     "env": {
-        "PYTHONPATH": ".",
-        "FLASK_ENV": "production"
+        "PYTHONPATH": "."
     }
 }
